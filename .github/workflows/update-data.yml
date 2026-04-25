@@ -1,0 +1,47 @@
+name: Update Lottery Data
+
+# 純手動觸發 (依使用者要求,不設排程)
+on:
+  workflow_dispatch:
+    inputs:
+      game:
+        description: '要更新的彩種 (all = 全部)'
+        required: false
+        default: 'all'
+        type: choice
+        options:
+          - all
+          - '539'
+          - lotto649
+          - superlotto
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install deps
+        run: npm ci
+
+      - name: Run update
+        run: npm run update:all
+
+      - name: Commit data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add public/data
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "chore: update lottery data ($(date -u +%Y-%m-%d))"
+            git push
+          fi

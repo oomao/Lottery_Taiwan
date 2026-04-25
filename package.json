@@ -1,0 +1,37 @@
+{
+  "name": "taiwan-lottery",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview",
+    "fetch:539": "tsx scripts/fetchers/fetch-539.ts",
+    "fetch:lotto649": "tsx scripts/fetchers/fetch-lotto649.ts",
+    "fetch:superlotto": "tsx scripts/fetchers/fetch-superlotto.ts",
+    "stats:539": "tsx scripts/stats/compute-all.ts 539",
+    "stats:lotto649": "tsx scripts/stats/compute-all.ts lotto649",
+    "stats:superlotto": "tsx scripts/stats/compute-all.ts superlotto",
+    "update:all": "tsx scripts/update-all.ts"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.26.0",
+    "recharts": "^2.12.7",
+    "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.3.1",
+    "autoprefixer": "^10.4.19",
+    "postcss": "^8.4.39",
+    "tailwindcss": "^3.4.6",
+    "tsx": "^4.16.2",
+    "typescript": "^5.5.3",
+    "vite": "^5.3.4"
+  }
+}
