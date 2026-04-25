@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "game": "539",
-  "trained_at": "2026-04-25T11:31:23.250493+00:00",
+  "trained_at": "2026-04-25T12:00:09.323156+00:00",
   "training_data": {
     "total_draws": 941,
     "first_term_date": "—",
@@ -21,8 +21,8 @@
       39
     ],
     "epochs_trained": 23,
-    "best_val_loss": 0.38271671533584595,
-    "final_train_loss": 0.3843321204185486
+    "best_val_loss": 0.3830066919326782,
+    "final_train_loss": 0.3853735327720642
   },
   "feature_schema": {
     "num_range": 39,
@@ -68,22 +68,22 @@
   "evaluation": {
     "test_size": 133,
     "k": 5,
-    "model_avg_hits": 0.5864661931991577,
+    "model_avg_hits": 0.6015037298202515,
     "random_baseline_theoretical": 0.6410256410256411,
     "random_simulated_avg_hits": 0.6390977501869202,
-    "improvement_vs_random": -0.05263155698776245,
-    "t_statistic": -0.663009314485246,
-    "p_value": 0.5084807156708885,
+    "improvement_vs_random": -0.0375940203666687,
+    "t_statistic": -0.49125748684906223,
+    "p_value": 0.6240601571998656,
     "is_significant_at_0.05": false,
     "confidence_interval_95": [
-      -0.20822199914442116,
-      0.10295884046541268
+      -0.1875850033014317,
+      0.11239703707390028
     ],
     "model_hits_distribution": {
-      "0": 67,
-      "1": 54,
-      "2": 12,
-      "3": 0,
+      "0": 68,
+      "1": 51,
+      "2": 13,
+      "3": 1,
       "4": 0,
       "5": 0
     }

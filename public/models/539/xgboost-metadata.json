@@ -1,0 +1,75 @@
+{
+  "version": "1.0",
+  "game": "539",
+  "model_type": "xgboost",
+  "trained_at": "2026-04-25T12:00:18.874948+00:00",
+  "training_data": {
+    "total_draws": 941,
+    "window_size": 60,
+    "train_samples": 616,
+    "val_samples": 132,
+    "test_samples": 133
+  },
+  "model": {
+    "architecture": "39 個獨立 XGBoost binary classifier (n_estimators=200, max_depth=4, lr=0.05)",
+    "n_estimators": 200,
+    "max_depth": 4,
+    "learning_rate": 0.05,
+    "feature_dim": 160
+  },
+  "feature_schema": {
+    "feature_dim": 160,
+    "window_size": 60,
+    "decay": 0.97,
+    "feature_layout": [
+      {
+        "start": 0,
+        "end": 39,
+        "name": "freq_ratio"
+      },
+      {
+        "start": 39,
+        "end": 78,
+        "name": "decayed_count"
+      },
+      {
+        "start": 78,
+        "end": 117,
+        "name": "gap_per_number"
+      },
+      {
+        "start": 117,
+        "end": 156,
+        "name": "last_period_multi_hot"
+      },
+      {
+        "start": 156,
+        "end": 160,
+        "name": "agg_sum_odd_big_consec"
+      }
+    ]
+  },
+  "evaluation": {
+    "test_size": 133,
+    "k": 5,
+    "model_avg_hits": 0.5563910007476807,
+    "random_baseline_theoretical": 0.6410256410256411,
+    "random_simulated_avg_hits": 0.6390977501869202,
+    "improvement_vs_random": -0.0827067494392395,
+    "t_statistic": -1.0170820805368772,
+    "p_value": 0.31097496157717647,
+    "is_significant_at_0.05": false,
+    "confidence_interval_95": [
+      -0.24208943862772622,
+      0.07667590994692483
+    ],
+    "model_hits_distribution": {
+      "0": 74,
+      "1": 46,
+      "2": 11,
+      "3": 2,
+      "4": 0,
+      "5": 0
+    }
+  }
+}
