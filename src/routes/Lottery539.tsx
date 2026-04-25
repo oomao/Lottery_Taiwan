@@ -6,12 +6,14 @@ import LatestDraw from '@/components/LatestDraw';
 import HistoryTable from '@/components/HistoryTable';
 import StatsPanel from '@/components/stats/StatsPanel';
 import NumberPicker from '@/components/picker/NumberPicker';
+import ComboRecommend from '@/components/combo/ComboRecommend';
 
-type Tab = 'history' | 'stats' | 'picker';
+type Tab = 'history' | 'stats' | 'combo' | 'picker';
 
 const TABS: { key: Tab; label: string }[] = [
   { key: 'history', label: '開獎查詢' },
   { key: 'stats', label: '統計分析' },
+  { key: 'combo', label: '二/三/四合' },
   { key: 'picker', label: '選號工具' },
 ];
 
@@ -70,6 +72,7 @@ export default function Lottery539() {
           <div>
             {tab === 'history' && <HistoryTable draws={draws} game={game539} />}
             {tab === 'stats' && <StatsPanel draws={draws} game={game539} />}
+            {tab === 'combo' && <ComboRecommend draws={draws} game={game539} />}
             {tab === 'picker' && <NumberPicker draws={draws} game={game539} />}
           </div>
         </>
