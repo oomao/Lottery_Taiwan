@@ -12,13 +12,27 @@ import type { Draw, GameConfig } from '../types';
 import { combinations } from './combo';
 
 export type RecommendMethod =
-  | 'composite'   // 綜合推薦 (預設)
+  | 'composite'   // 綜合推薦 (預設,權重依 k 動態調整)
   | 'frequency'   // 純頻率
   | 'weighted'    // 衰減加權
   | 'gap'         // 遺漏值
   | 'marginal'    // 邊際機率
   | 'lift'        // Lift / 共現相對機率
-  | 'markov';     // 馬可夫鏈 (給定上期)
+  | 'markov'      // 馬可夫鏈 (給定上期)
+  | 'ml';         // LSTM ML 模型 (在 ComboRecommend 元件內以 async 載入處理)
+
+// 綜合推薦的權重表 - 依合數調整
+// 設計理念:
+//   k=2 (二合): 已觀察組合 12+ 樣本,頻率類有意義,加權/lift/markov 同樣重要
+//   k=3 (三合): 觀察樣本 ~1 次/組合,需要更倚賴可推導的方法 (marginal/lift)
+//   k=4 (四合): 95% 組合是 0 次,frequency 系列徹底失效,marginal 成為主力
+export const COMPOSITE_WEIGHTS: Record<2 | 3 | 4, {
+  weighted: number; marginal: number; lift: number; markov: number;
+}> = {
+  2: { weighted: 0.35, marginal: 0.20, lift: 0.25, markov: 0.20 },
+  3: { weighted: 0.25, marginal: 0.30, lift: 0.25, markov: 0.20 },
+  4: { weighted: 0.10, marginal: 0.55, lift: 0.20, markov: 0.15 },
+};
 
 export interface ComboScore {
   combo: number[];
@@ -307,9 +321,13 @@ export function recommend(
     const mVals = norm(scored.map((s) => s.marginal));
     const lVals = norm(scored.map((s) => s.lift));
     const kVals = norm(scored.map((s) => s.markov));
+    const weights = COMPOSITE_WEIGHTS[k];
     scored.forEach((s, i) => {
-      // 預設權重:近期表現 30% + 邊際 30% + 共現 20% + 馬可夫 20%
-      s.score = wVals[i] * 0.3 + mVals[i] * 0.3 + lVals[i] * 0.2 + kVals[i] * 0.2;
+      s.score =
+        wVals[i] * weights.weighted +
+        mVals[i] * weights.marginal +
+        lVals[i] * weights.lift +
+        kVals[i] * weights.markov;
     });
   } else {
     scored.forEach((s) => {

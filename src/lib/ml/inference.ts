@@ -89,40 +89,5 @@ export async function predictNext(
   return { numberProbs: probs, topNumbers };
 }
 
-/**
- * 從預測機率產生 k-合的 top N 推薦組合
- * 用 greedy:先取機率前 M 個號,再列舉 C(M, k)
- */
-export function greedyComboFromProbs(
-  probs: number[],
-  k: 2 | 3 | 4,
-  topN: number,
-  poolSize: number = 12
-): { combo: number[]; score: number }[] {
-  const top = probs
-    .map((p, i) => ({ number: i + 1, prob: p }))
-    .sort((a, b) => b.prob - a.prob)
-    .slice(0, poolSize);
-
-  const combos: { combo: number[]; score: number }[] = [];
-  const numbers = top.map((t) => t.number);
-  const probMap = new Map(top.map((t) => [t.number, t.prob]));
-
-  // 列舉 C(poolSize, k) 組合
-  const combine = (start: number, current: number[]) => {
-    if (current.length === k) {
-      const score = current.reduce((p, n) => p * (probMap.get(n) ?? 0), 1);
-      combos.push({ combo: [...current].sort((a, b) => a - b), score });
-      return;
-    }
-    for (let i = start; i < numbers.length; i++) {
-      current.push(numbers[i]);
-      combine(i + 1, current);
-      current.pop();
-    }
-  };
-  combine(0, []);
-
-  combos.sort((a, b) => b.score - a.score);
-  return combos.slice(0, topN);
-}
+// greedyComboFromProbs 已搬到 ./greedy.ts (純函式,避免把 tfjs deps 一起拉進來)
+export { greedyComboFromProbs } from './greedy';
