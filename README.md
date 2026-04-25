@@ -307,25 +307,44 @@ P(某固定 k-合在某期出現) = C(pickCount, k) / C(numberRange, k)
 
 ---
 
-## 🔮 未來規劃 / 維運文件
+## 🔮 未來規劃 / 維運手冊
 
-| 主題 | 文件 |
+> 不確定怎麼做的時候,先看這裡。每個情境都有獨立文件可參考。
+
+### 📌 情境速查
+
+| 我想... | 看哪個文件 |
 |---|---|
-| 機器學習階段 (LSTM / XGBoost) 完整 roadmap | [docs/ML_FUTURE_PLAN.md](docs/ML_FUTURE_PLAN.md) |
-| 如何停用 / 重啟資料更新排程 | [docs/HOW_TO_DISABLE_SCHEDULE.md](docs/HOW_TO_DISABLE_SCHEDULE.md) |
+| **🛑 停止每天自動抓資料** (要省事 / 不再用 / 改回只手動) | → [docs/HOW_TO_DISABLE_SCHEDULE.md](docs/HOW_TO_DISABLE_SCHEDULE.md) |
+| **🤖 加強 ML 模型** (LSTM/XGBoost 混合、Hybrid、其他模型) | → [docs/ML_FUTURE_PLAN.md](docs/ML_FUTURE_PLAN.md) |
+| **🔄 改變抓取頻率** (每週、每小時、每月某天) | → [docs/HOW_TO_DISABLE_SCHEDULE.md](docs/HOW_TO_DISABLE_SCHEDULE.md) 「重新開啟自動排程」段落 |
+| **📊 加新彩種** (3 星彩、4 星彩...) | 在 [src/lib/games/](src/lib/games/) 新增 config,在 [scripts/fetchers/](scripts/fetchers/) 寫 fetcher |
+| **🎨 改主題色** | 編輯 [tailwind.config.js](tailwind.config.js) 的 `brand` 色 |
 
-### 重點摘要
+### 🛑 停用自動排程 (3 種做法摘要)
 
-**機器學習階段**:
-- LSTM (TensorFlow.js) 時序模型
-- LSTM + XGBoost 混合架構
-- GitHub Actions 訓練 pipeline
-- 前端推論部署
-- 目前專案以**統計演算法為主軸**,ML 階段保留架構彈性、可日後接入。
+完整步驟見 → **[docs/HOW_TO_DISABLE_SCHEDULE.md](docs/HOW_TO_DISABLE_SCHEDULE.md)**
 
-**停用排程**:
-- 三種做法(網頁停用 / 改 code 只留手動 / 完全刪除)
-- 完整步驟、適用情境、復原方式
+| 場景 | 做法 | 是否可逆 |
+|---|---|---|
+| 暫停 1-2 週 | GitHub 網頁直接 Disable workflow | ✅ 隨時 Enable 回來 |
+| 改成只能手動觸發 | 改 YAML 移除 `schedule:` 區塊 | ✅ 加回來就好 |
+| 完全不想用了 | `git rm .github/workflows/update-data.yml` | ✅ 但要重寫 |
+
+### 🤖 機器學習延伸
+
+完整 roadmap 見 → **[docs/ML_FUTURE_PLAN.md](docs/ML_FUTURE_PLAN.md)**
+
+目前已實作 (階段 D-基礎):
+- ✅ LSTM (TensorFlow.js) 時序模型 + WASM 後端
+- ✅ GitHub Actions 訓練 pipeline (`workflow_dispatch` 觸發)
+- ✅ 前端動態 import 推論
+- ✅ p-value + 95% CI 對比隨機基準
+
+未來可擴充:
+- LSTM + XGBoost Hybrid (PDF 推薦組合)
+- 大樂透 / 威力彩 各自的模型
+- 線上微調 (使用者可自選超參數)
 
 ---
 
