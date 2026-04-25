@@ -122,7 +122,13 @@ export default function HistoryTable({ draws, game }: Props) {
           {dateError ? (
             <span className="text-sm text-red-600">⚠ {dateError}</span>
           ) : (
-            <span className="text-sm text-gray-500">共 {filtered.length} 期</span>
+            <span className="text-sm text-gray-500">
+              {filtered.length === draws.length ? (
+                <>資料庫共 <strong>{draws.length}</strong> 期</>
+              ) : (
+                <>篩選 <strong>{filtered.length}</strong> / 全 {draws.length} 期</>
+              )}
+            </span>
           )}
           <button
             onClick={handleExport}

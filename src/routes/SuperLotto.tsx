@@ -1,22 +1,11 @@
-import { useEffect, useState } from 'react';
 import { gameSuperLotto } from '@/lib/games/superlotto.config';
-import { loadDraws } from '@/lib/data-loader';
-import type { Draw } from '@/lib/types';
+import { useDraws } from '@/lib/useDraws';
 import LatestDraw from '@/components/draw/LatestDraw';
 import HistoryTable from '@/components/draw/HistoryTable';
+import DataFreshness from '@/components/draw/DataFreshness';
 
 export default function SuperLotto() {
-  const [draws, setDraws] = useState<Draw[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    loadDraws('superlotto')
-      .then(setDraws)
-      .catch((e) => setError(e.message))
-      .finally(() => setLoading(false));
-  }, []);
-
+  const { draws, loading, error, refreshing, refresh, fetchedAt } = useDraws('superlotto');
   const latest = [...draws].sort((a, b) => b.drawDate.localeCompare(a.drawDate))[0];
 
   return (
@@ -41,6 +30,12 @@ export default function SuperLotto() {
 
       {!loading && !error && (
         <>
+          <DataFreshness
+            draws={draws}
+            fetchedAt={fetchedAt}
+            refreshing={refreshing}
+            onRefresh={refresh}
+          />
           {latest && <LatestDraw draw={latest} game={gameSuperLotto} />}
           <HistoryTable draws={draws} game={gameSuperLotto} />
         </>

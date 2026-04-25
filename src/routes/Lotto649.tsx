@@ -1,22 +1,11 @@
-import { useEffect, useState } from 'react';
 import { gameLotto649 } from '@/lib/games/lotto649.config';
-import { loadDraws } from '@/lib/data-loader';
-import type { Draw } from '@/lib/types';
+import { useDraws } from '@/lib/useDraws';
 import LatestDraw from '@/components/draw/LatestDraw';
 import HistoryTable from '@/components/draw/HistoryTable';
+import DataFreshness from '@/components/draw/DataFreshness';
 
 export default function Lotto649() {
-  const [draws, setDraws] = useState<Draw[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    loadDraws('lotto649')
-      .then(setDraws)
-      .catch((e) => setError(e.message))
-      .finally(() => setLoading(false));
-  }, []);
-
+  const { draws, loading, error, refreshing, refresh, fetchedAt } = useDraws('lotto649');
   const latest = [...draws].sort((a, b) => b.drawDate.localeCompare(a.drawDate))[0];
 
   return (
@@ -41,6 +30,12 @@ export default function Lotto649() {
 
       {!loading && !error && (
         <>
+          <DataFreshness
+            draws={draws}
+            fetchedAt={fetchedAt}
+            refreshing={refreshing}
+            onRefresh={refresh}
+          />
           {latest && <LatestDraw draw={latest} game={gameLotto649} />}
           <HistoryTable draws={draws} game={gameLotto649} />
         </>

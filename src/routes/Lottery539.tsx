@@ -1,12 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { game539 } from '@/lib/games/539.config';
-import { loadDraws } from '@/lib/data-loader';
-import type { Draw } from '@/lib/types';
+import { useDraws } from '@/lib/useDraws';
 import LatestDraw from '@/components/draw/LatestDraw';
 import HistoryTable from '@/components/draw/HistoryTable';
 import StatsPanel from '@/components/stats/StatsPanel';
 import NumberPicker from '@/components/picker/NumberPicker';
 import ComboRecommend from '@/components/combo/ComboRecommend';
+import DataFreshness from '@/components/draw/DataFreshness';
 
 type Tab = 'history' | 'stats' | 'combo' | 'picker';
 
@@ -18,17 +18,8 @@ const TABS: { key: Tab; label: string }[] = [
 ];
 
 export default function Lottery539() {
-  const [draws, setDraws] = useState<Draw[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const { draws, loading, error, refreshing, refresh, fetchedAt } = useDraws('539');
   const [tab, setTab] = useState<Tab>('history');
-
-  useEffect(() => {
-    loadDraws('539')
-      .then(setDraws)
-      .catch((e) => setError(e.message))
-      .finally(() => setLoading(false));
-  }, []);
 
   const latest = [...draws].sort((a, b) => b.drawDate.localeCompare(a.drawDate))[0];
 
@@ -51,6 +42,13 @@ export default function Lottery539() {
 
       {!loading && !error && (
         <>
+          <DataFreshness
+            draws={draws}
+            fetchedAt={fetchedAt}
+            refreshing={refreshing}
+            onRefresh={refresh}
+          />
+
           {latest && <LatestDraw draw={latest} game={game539} />}
 
           <div className="flex gap-1 border-b border-gray-200 dark:border-gray-700 overflow-x-auto">
