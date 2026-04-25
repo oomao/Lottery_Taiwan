@@ -18,8 +18,7 @@ export type RecommendMethod =
   | 'gap'         // 遺漏值
   | 'marginal'    // 邊際機率
   | 'lift'        // Lift / 共現相對機率
-  | 'markov'      // 馬可夫鏈 (給定上期)
-  | 'ml';         // LSTM ML 模型 (在 ComboRecommend 元件內以 async 載入處理)
+  | 'markov';     // 馬可夫鏈 (給定上期)
 
 // 綜合推薦的權重表 - 依合數調整
 // 設計理念:

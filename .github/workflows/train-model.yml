@@ -11,13 +11,22 @@ on:
         type: choice
         options:
           - '539'
+      models:
+        description: '訓練哪些模型'
+        required: false
+        default: 'both'
+        type: choice
+        options:
+          - both
+          - lstm
+          - xgboost
       epochs:
-        description: '訓練 epoch 數 (預設 100,EarlyStopping 通常會提早停)'
+        description: 'LSTM epoch 數 (預設 100,EarlyStopping 會自動停)'
         required: false
         default: '100'
         type: string
       batch:
-        description: 'Batch size (預設 32)'
+        description: 'LSTM batch size'
         required: false
         default: '32'
         type: string
@@ -30,6 +39,7 @@ jobs:
     timeout-minutes: 60
     env:
       GAME: ${{ github.event.inputs.game || '539' }}
+      MODELS: ${{ github.event.inputs.models || 'both' }}
       EPOCHS: ${{ github.event.inputs.epochs || '100' }}
       BATCH: ${{ github.event.inputs.batch || '32' }}
 
@@ -48,16 +58,29 @@ jobs:
           pip install -r scripts/ml/requirements.txt
 
       - name: Train LSTM model
+        if: env.MODELS == 'both' || env.MODELS == 'lstm'
         run: python scripts/ml/train_lstm.py "$GAME" --epochs "$EPOCHS" --batch "$BATCH"
 
-      - name: Convert to TF.js format
+      - name: Convert LSTM to TF.js
+        if: env.MODELS == 'both' || env.MODELS == 'lstm'
         run: python scripts/ml/convert_to_tfjs.py "$GAME"
+
+      - name: Train XGBoost model
+        if: env.MODELS == 'both' || env.MODELS == 'xgboost'
+        run: python scripts/ml/train_xgboost.py "$GAME"
 
       - name: Show output files
         run: |
           ls -lh public/models/"$GAME"/
-          echo "--- metadata.json (excerpt) ---"
-          head -c 1500 public/models/"$GAME"/metadata.json
+          if [ -f public/models/"$GAME"/metadata.json ]; then
+            echo "--- LSTM metadata (excerpt) ---"
+            head -c 1000 public/models/"$GAME"/metadata.json
+          fi
+          if [ -f public/models/"$GAME"/xgboost-metadata.json ]; then
+            echo ""
+            echo "--- XGBoost metadata (excerpt) ---"
+            head -c 1000 public/models/"$GAME"/xgboost-metadata.json
+          fi
 
       - name: Commit model files
         run: |
@@ -67,6 +90,6 @@ jobs:
           if git diff --staged --quiet; then
             echo "No model changes to commit"
           else
-            git commit -m "chore: train $GAME LSTM model ($(date -u +%Y-%m-%d))"
+            git commit -m "chore: train $GAME model(s) - $MODELS ($(date -u +%Y-%m-%d))"
             git push
           fi

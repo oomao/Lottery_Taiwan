@@ -1,14 +1,12 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useMemo, useState } from 'react';
 import type { Draw, GameConfig } from '@/lib/types';
 import {
   recommend,
   expectedRandomCount,
-  precomputeStats,
   COMPOSITE_WEIGHTS,
   type RecommendMethod,
   type ComboScore,
 } from '@/lib/stats/recommend';
-import { greedyComboFromProbs } from '@/lib/ml/greedy';
 import Ball from '@/components/ui/Ball';
 
 interface Props {
@@ -86,14 +84,6 @@ const METHODS: MethodInfo[] = [
     bestFor: '想結合「上期開了什麼」做動態預測',
     caveat: '一階馬可夫,看不到 2 期前以上的依賴',
   },
-  {
-    key: 'ml',
-    label: '🤖 ML 模型 (LSTM)',
-    desc: '神經網路預測下期每號機率,組合用機率連乘',
-    detail: 'Bidirectional LSTM 訓練於過去 60 期窗口,輸出 39 維 sigmoid 機率。ComboRecommend 用「貪婪法」取機率前 12 名號碼,枚舉 C(12, k) 組合並依機率連乘排序。',
-    bestFor: '想看 ML 跟統計法的差異',
-    caveat: '⚠️ 需先在 Actions 觸發 Train ML Model;首次載入要下 ~3MB;p-value 通常不顯著',
-  },
 ];
 
 const WINDOW_PRESETS = [
@@ -114,12 +104,6 @@ export default function ComboRecommend({ draws, game }: Props) {
   const [filterNum, setFilterNum] = useState('');
   const [error, setError] = useState<string | null>(null);
 
-  // ML 狀態 (只有當 method='ml' 時才會去載)
-  const [mlProbs, setMlProbs] = useState<number[] | null>(null);
-  const [mlStatus, setMlStatus] = useState<'idle' | 'loading' | 'ready' | 'error'>('idle');
-  const [mlError, setMlError] = useState<string | null>(null);
-  const mlLoadedFor = useRef<string | null>(null);
-
   const total = draws.length;
   const effectiveWindow = window ?? total;
 
@@ -131,72 +115,15 @@ export default function ComboRecommend({ draws, game }: Props) {
     return nums.length > 0 ? nums : undefined;
   }, [filterNum, game.numberRange]);
 
-  // 當切到 ML 方法時,動態載 inference + 模型 + 推論
-  useEffect(() => {
-    if (method !== 'ml') return;
-    // 同個 game 已載過則跳過
-    if (mlLoadedFor.current === game.id && mlProbs) {
-      setMlStatus('ready');
-      return;
-    }
-    setMlStatus('loading');
-    setMlError(null);
-    let cancelled = false;
-    import('@/lib/ml/inference')
-      .then(async (inf) => {
-        await inf.loadMLModel(game.id);
-        const pred = await inf.predictNext(game.id, draws);
-        if (cancelled) return;
-        setMlProbs(pred.numberProbs);
-        setMlStatus('ready');
-        mlLoadedFor.current = game.id;
-      })
-      .catch((e) => {
-        if (cancelled) return;
-        setMlError((e as Error).message);
-        setMlStatus('error');
-      });
-    return () => {
-      cancelled = true;
-    };
-  }, [method, game.id, draws, mlProbs]);
-
-  const results = useMemo(() => {
+  const results = useMemo<ComboScore[]>(() => {
     if (total === 0) return [];
-
-    // ML 路徑:用 greedyComboFromProbs 產生 top N,並用 precomputeStats 補歷史欄位
-    if (method === 'ml') {
-      if (!mlProbs) return [];
-      const greedy = greedyComboFromProbs(mlProbs, k, topN, 12);
-      const pre = precomputeStats(draws, game, k, { window: window ?? undefined });
-      // 過濾「只看含號」
-      const filtered = mustContain && mustContain.length > 0
-        ? greedy.filter((g) => mustContain.some((n) => g.combo.includes(n)))
-        : greedy;
-      return filtered.map<ComboScore>((g) => {
-        const key = g.combo.slice().sort((a, b) => a - b).join('-');
-        const obs = pre.observedCombos.get(key);
-        return {
-          combo: g.combo,
-          score: g.score,
-          count: obs?.count ?? 0,
-          weighted: obs?.weighted ?? 0,
-          gap: obs?.gap ?? Infinity,
-          lastSeenTerm: obs?.lastSeenTerm ?? null,
-          marginal: 0,
-          lift: 0,
-          markov: 0,
-          isObserved: !!obs,
-        };
-      });
-    }
 
     return recommend(draws, game, k, method, {
       window: window ?? undefined,
       topN,
       mustContain,
     });
-  }, [draws, game, k, method, window, topN, mustContain, mlProbs]);
+  }, [draws, game, k, method, window, topN, mustContain]);
 
   const baseline = useMemo(
     () => expectedRandomCount(effectiveWindow, k, game),
@@ -372,37 +299,16 @@ export default function ComboRecommend({ draws, game }: Props) {
         </div>
       </div>
 
-      {/* ML 載入狀態 */}
-      {method === 'ml' && mlStatus === 'loading' && (
-        <div className="card text-center py-6">
-          <div className="text-3xl mb-2 animate-pulse">🤖</div>
-          <p className="text-sm text-gray-600 dark:text-gray-300">
-            載入 LSTM 模型中... (首次需下載 ~3MB,之後 SW 會快取)
-          </p>
-        </div>
-      )}
-      {method === 'ml' && mlStatus === 'error' && (
-        <div className="card text-center py-6 border-red-300 bg-red-50 dark:bg-red-900/20">
-          <p className="text-sm text-red-600 mb-2">⚠️ {mlError}</p>
-          <p className="text-xs text-gray-500">
-            請先到{' '}
-            <a
-              href="https://github.com/oomao/Lottery_Taiwan/actions/workflows/train-model.yml"
-              target="_blank"
-              rel="noreferrer"
-              className="underline text-brand"
-            >
-              GitHub Actions
-            </a>{' '}
-            觸發 <code>Train ML Model</code>
-          </p>
-        </div>
-      )}
+      {/* 結果區 */}
+      <ResultList results={results} game={game} method={method} k={k} baseline={baseline} />
 
-      {/* 結果區 (ML 還沒就緒時不顯示) */}
-      {(method !== 'ml' || mlStatus === 'ready') && (
-        <ResultList results={results} game={game} method={method} k={k} baseline={baseline} />
-      )}
+      {/* 提示使用者 ML 在哪 */}
+      <div className="card bg-purple-50 dark:bg-purple-900/20 border-purple-200 dark:border-purple-800 text-sm text-purple-900 dark:text-purple-200">
+        <p className="font-bold mb-1">🤖 想看 ML 模型 (LSTM / XGBoost) 的推薦?</p>
+        <p className="text-xs">
+          切換到上方「ML 模型」分頁,可看完整評估指標、p-value、隨機基準對比、與下期 Top 10 號碼。
+        </p>
+      </div>
 
       {/* 免責聲明 */}
       <div className="card bg-amber-50 dark:bg-amber-900/20 border-amber-200 dark:border-amber-800 text-sm text-amber-900 dark:text-amber-200">
@@ -568,7 +474,5 @@ function formatScore(score: number, method: RecommendMethod): string {
       return score.toFixed(2);
     case 'composite':
       return score.toFixed(3);
-    case 'ml':
-      return `${(score * 100).toFixed(4)}%`;
   }
 }
