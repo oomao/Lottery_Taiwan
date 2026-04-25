@@ -24,7 +24,8 @@ export async function loadMLModel(game: GameId): Promise<LoadedModel> {
   if (cached && cachedGame === game) return cached;
 
   // 1. 先驗證 metadata 存在 (失敗就直接 throw,讓上層顯示「尚未訓練」)
-  const metaRes = await fetch(metadataUrl(game));
+  // 用 ?t= + cache: 'no-store' bypass Service Worker 快取
+  const metaRes = await fetch(`${metadataUrl(game)}?t=${Date.now()}`, { cache: 'no-store' });
   if (!metaRes.ok) {
     throw new Error(`模型尚未訓練 (找不到 metadata.json),請先到 GitHub Actions 觸發 Train ML Model`);
   }

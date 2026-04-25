@@ -4,6 +4,12 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+  # 在資料/模型更新 workflow 完成後也觸發部署
+  # (因為它們用 GITHUB_TOKEN 做的 push 不會觸發 push 事件,需要明確的 workflow_run)
+  workflow_run:
+    workflows: ['Update Lottery Data', 'Train ML Model']
+    types: [completed]
+    branches: [main]
 
 permissions:
   contents: read
@@ -17,6 +23,8 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    # workflow_run 觸發時,只在來源 workflow 成功才部署
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4

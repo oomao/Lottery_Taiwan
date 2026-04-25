@@ -22,9 +22,11 @@ let cachedGame: GameId | null = null;
 export async function loadXGBoostModel(game: GameId): Promise<LoadedXGBoost> {
   if (cached && cachedGame === game) return cached;
 
+  // 加 cache-busting query 避免 Service Worker 服務 stale 404
+  const ts = Date.now();
   const [metaRes, modelRes] = await Promise.all([
-    fetch(metadataUrl(game)),
-    fetch(modelUrl(game)),
+    fetch(`${metadataUrl(game)}?t=${ts}`, { cache: 'no-store' }),
+    fetch(`${modelUrl(game)}?t=${ts}`, { cache: 'no-store' }),
   ]);
 
   if (!metaRes.ok || !modelRes.ok) {
