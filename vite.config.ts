@@ -3,9 +3,9 @@ import react from '@vitejs/plugin-react';
 import path from 'node:path';
 
 // GitHub Pages 部署在 https://<user>.github.io/<repo>/,所以 base 要設成 repo 名
-// 開發時 (dev) base 用 /,build 時用 /lottery/
+// 開發時 (dev) base 用 /,build 時用 /Lottery_Taiwan/ (對齊 GitHub repo 名稱)
 export default defineConfig(({ command }) => ({
-  base: command === 'build' ? '/lottery/' : '/',
+  base: command === 'build' ? '/Lottery_Taiwan/' : '/',
   plugins: [react()],
   resolve: {
     alias: {
