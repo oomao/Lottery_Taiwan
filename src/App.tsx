@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
-import Layout from './components/Layout';
+import Layout from './components/layout/Layout';
 import Home from './routes/Home';
 import Lottery539 from './routes/Lottery539';
 import Lotto649 from './routes/Lotto649';

@@ -3,7 +3,7 @@
 // - JSON 資料:stale-while-revalidate,先回快取再背景更新
 // - 其他 (圖示、字型):cache-first
 
-const VERSION = 'v1';
+const VERSION = 'v2-2026-04-25';
 const SHELL_CACHE = `shell-${VERSION}`;
 const DATA_CACHE = `data-${VERSION}`;
 

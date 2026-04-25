@@ -1,5 +1,5 @@
 import type { Draw, GameConfig } from '@/lib/types';
-import Ball from './ui/Ball';
+import Ball from '@/components/ui/Ball';
 
 interface Props {
   draw: Draw;

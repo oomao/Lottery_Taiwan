@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 import { gameSuperLotto } from '@/lib/games/superlotto.config';
 import { loadDraws } from '@/lib/data-loader';
 import type { Draw } from '@/lib/types';
-import LatestDraw from '@/components/LatestDraw';
-import HistoryTable from '@/components/HistoryTable';
+import LatestDraw from '@/components/draw/LatestDraw';
+import HistoryTable from '@/components/draw/HistoryTable';
 
 export default function SuperLotto() {
   const [draws, setDraws] = useState<Draw[]>([]);

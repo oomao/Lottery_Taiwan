@@ -157,16 +157,25 @@ P(任一固定 k-合在某期出現) = C(pickCount, k) / C(numberCount, k)
 
 ---
 
-## 🔮 未來規劃
+## 🔮 未來規劃 / 維運文件
 
-詳見 [docs/ML_FUTURE_PLAN.md](docs/ML_FUTURE_PLAN.md):
+| 主題 | 文件 |
+|---|---|
+| 機器學習階段 (LSTM / XGBoost) 完整 roadmap | [docs/ML_FUTURE_PLAN.md](docs/ML_FUTURE_PLAN.md) |
+| 如何停用 / 重啟資料更新排程 | [docs/HOW_TO_DISABLE_SCHEDULE.md](docs/HOW_TO_DISABLE_SCHEDULE.md) |
 
+### 重點摘要
+
+**機器學習階段**:
 - LSTM (TensorFlow.js) 時序模型
 - LSTM + XGBoost 混合架構
 - GitHub Actions 訓練 pipeline
 - 前端推論部署
+- 目前專案以**統計演算法為主軸**,ML 階段保留架構彈性、可日後接入。
 
-目前專案以**統計演算法為主軸**,ML 階段保留架構彈性、可日後接入。
+**停用排程**:
+- 三種做法(網頁停用 / 改 code 只留手動 / 完全刪除)
+- 完整步驟、適用情境、復原方式
 
 ---
 

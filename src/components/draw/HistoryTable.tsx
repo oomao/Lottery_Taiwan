@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react';
 import type { Draw, GameConfig } from '@/lib/types';
 import { filterDrawsByDateRange } from '@/lib/data-loader';
 import { exportDrawsToExcel } from '@/lib/export-excel';
-import Ball from './ui/Ball';
+import Ball from '@/components/ui/Ball';
 
 interface Props {
   draws: Draw[];
