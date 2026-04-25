@@ -16,19 +16,36 @@ export default function HistoryTable({ draws, game }: Props) {
   const [endDate, setEndDate] = useState<string>('');
   const [page, setPage] = useState(0);
 
+  // 防呆:結束日早於起始日 → 視為無效範圍,顯示警告但不過濾(避免 0 筆假象)
+  const dateError =
+    startDate && endDate && startDate > endDate
+      ? '結束日不能早於起始日'
+      : null;
+
   const filtered = useMemo(() => {
+    if (dateError) return [];
     const result = filterDrawsByDateRange(draws, startDate || undefined, endDate || undefined);
-    // 由新到舊
     return [...result].sort((a, b) => b.drawDate.localeCompare(a.drawDate));
-  }, [draws, startDate, endDate]);
+  }, [draws, startDate, endDate, dateError]);
 
   const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
   const pageData = filtered.slice(page * PAGE_SIZE, (page + 1) * PAGE_SIZE);
 
   const handleExport = () => {
-    if (filtered.length === 0) {
-      alert('目前篩選範圍沒有資料');
+    if (dateError) {
+      alert(`日期範圍錯誤:${dateError}`);
       return;
+    }
+    if (draws.length === 0) {
+      alert('資料庫為空,請先到 GitHub Actions 觸發資料抓取');
+      return;
+    }
+    if (filtered.length === 0) {
+      alert('目前篩選範圍沒有資料,請調整日期或點「清除」');
+      return;
+    }
+    if (filtered.length > 5000) {
+      if (!confirm(`即將匯出 ${filtered.length} 期,檔案會比較大,確定繼續?`)) return;
     }
     exportDrawsToExcel(filtered, game, {
       startDate: startDate || undefined,
@@ -102,10 +119,15 @@ export default function HistoryTable({ draws, game }: Props) {
           </button>
         </div>
         <div className="ml-auto flex items-center gap-3">
-          <span className="text-sm text-gray-500">共 {filtered.length} 期</span>
+          {dateError ? (
+            <span className="text-sm text-red-600">⚠ {dateError}</span>
+          ) : (
+            <span className="text-sm text-gray-500">共 {filtered.length} 期</span>
+          )}
           <button
             onClick={handleExport}
-            className="px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded font-medium text-sm"
+            disabled={!!dateError}
+            className="px-4 py-2 bg-green-600 hover:bg-green-700 disabled:bg-gray-300 disabled:cursor-not-allowed text-white rounded font-medium text-sm"
           >
             📥 匯出 Excel
           </button>

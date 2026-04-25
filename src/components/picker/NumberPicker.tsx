@@ -57,7 +57,11 @@ export default function NumberPicker({ draws, game }: Props) {
   const generate = () => {
     const candidates = allNumbers.filter((n) => !excluded.has(n));
     if (candidates.length < game.pickCount) {
-      alert(`排除太多了!至少要保留 ${game.pickCount} 個號碼`);
+      alert(`排除太多了!至少要保留 ${game.pickCount} 個號碼,目前只剩 ${candidates.length} 個`);
+      return;
+    }
+    if (draws.length === 0 && mode !== 'random') {
+      alert('尚無歷史資料,加權選號需要資料才能計算,請先用「純隨機」或等資料抓取完成');
       return;
     }
 

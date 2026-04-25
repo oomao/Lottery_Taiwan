@@ -6,8 +6,14 @@ interface Props {
   game: GameConfig;
 }
 
+const PRESETS = [20, 30, 50, 100];
+
 export default function TrendHeatmap({ draws, game }: Props) {
-  const [windowSize, setWindowSize] = useState(30);
+  const total = draws.length;
+  const [windowSize, setWindowSize] = useState(Math.min(30, Math.max(1, total)));
+  const [customInput, setCustomInput] = useState('');
+  const [error, setError] = useState<string | null>(null);
+
   const [min, max] = game.numberRange;
 
   const sorted = useMemo(
@@ -15,7 +21,6 @@ export default function TrendHeatmap({ draws, game }: Props) {
     [draws, windowSize]
   );
 
-  // X 軸:期別 (新→舊),Y 軸:號碼 1..max
   const cellSize = 14;
   const numbers = Array.from({ length: max - min + 1 }, (_, i) => i + min);
 
@@ -24,24 +29,68 @@ export default function TrendHeatmap({ draws, game }: Props) {
     return draw?.numbers.includes(number) ?? false;
   };
 
+  const applyCustom = () => {
+    setError(null);
+    const n = Number(customInput.trim());
+    if (!Number.isFinite(n) || !Number.isInteger(n) || n < 1) {
+      setError('請輸入正整數');
+      return;
+    }
+    if (n > total) {
+      setError(`最多 ${total} 期`);
+      return;
+    }
+    setWindowSize(n);
+  };
+
+  if (total === 0) return null;
+
   return (
     <div className="card">
       <div className="flex items-baseline justify-between mb-3 flex-wrap gap-2">
         <h3 className="text-lg font-bold">📈 號碼走勢 (近 {windowSize} 期)</h3>
-        <div className="flex gap-1 text-xs">
-          {[20, 30, 50, 100].map((n) => (
+        <div className="flex flex-wrap gap-1 text-xs items-end">
+          {PRESETS.map((n) => (
             <button
               key={n}
-              onClick={() => setWindowSize(n)}
+              onClick={() => {
+                setWindowSize(Math.min(n, total));
+                setError(null);
+              }}
+              disabled={n > total}
               className={`px-2 py-1 rounded ${
-                windowSize === n ? 'bg-brand text-white' : 'bg-gray-100 dark:bg-gray-700'
+                windowSize === n
+                  ? 'bg-brand text-white'
+                  : n > total
+                    ? 'bg-gray-100 text-gray-400 cursor-not-allowed dark:bg-gray-800 dark:text-gray-600'
+                    : 'bg-gray-100 dark:bg-gray-700'
               }`}
             >
               {n} 期
             </button>
           ))}
+          <input
+            type="number"
+            min={1}
+            max={total}
+            value={customInput}
+            onChange={(e) => {
+              setCustomInput(e.target.value);
+              setError(null);
+            }}
+            onKeyDown={(e) => e.key === 'Enter' && applyCustom()}
+            placeholder="自訂"
+            className="border border-gray-300 dark:border-gray-600 rounded px-2 py-1 w-20 bg-white dark:bg-gray-700"
+          />
+          <button
+            onClick={applyCustom}
+            className="px-2 py-1 rounded bg-brand text-white"
+          >
+            套用
+          </button>
         </div>
       </div>
+      {error && <p className="text-xs text-red-600 mb-2">⚠ {error}</p>}
 
       <div className="overflow-x-auto">
         <div className="inline-block">
@@ -70,9 +119,7 @@ export default function TrendHeatmap({ draws, game }: Props) {
                     key={d.drawTerm + '-' + n}
                     title={`${d.drawTerm} → ${hit ? '中' : '未中'}`}
                     className={`border border-gray-100 dark:border-gray-800 ${
-                      hit
-                        ? 'bg-red-500'
-                        : 'bg-gray-50 dark:bg-gray-700/30'
+                      hit ? 'bg-red-500' : 'bg-gray-50 dark:bg-gray-700/30'
                     }`}
                     style={{ width: cellSize, height: cellSize }}
                   />

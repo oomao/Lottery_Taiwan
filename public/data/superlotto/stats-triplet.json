@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-04-25T09:00:46.441Z",
-  "totalDraws": 207,
+  "generatedAt": "2026-04-25T09:33:40.465Z",
+  "totalDraws": 312,
   "windowSize": null,
   "decayFactor": 0.97,
   "data": [
@@ -65,8 +65,8 @@
         34,
         37
       ],
-      "count": 2,
-      "weightedScore": 1.4974805126389445,
+      "count": 3,
+      "weightedScore": 1.4980724873591966,
       "gap": 1,
       "lastSeenTerm": "115000032"
     },
@@ -98,8 +98,8 @@
         31,
         34
       ],
-      "count": 2,
-      "weightedScore": 1.4527255299830082,
+      "count": 3,
+      "weightedScore": 1.4534808470305132,
       "gap": 10,
       "lastSeenTerm": "115000023"
     },
@@ -340,8 +340,8 @@
         14,
         29
       ],
-      "count": 2,
-      "weightedScore": 1.1693335045075575,
+      "count": 3,
+      "weightedScore": 1.1694104192086827,
       "gap": 13,
       "lastSeenTerm": "115000020"
     },
@@ -362,8 +362,8 @@
         22,
         35
       ],
-      "count": 3,
-      "weightedScore": 1.1630527706377791,
+      "count": 4,
+      "weightedScore": 1.1647718362846813,
       "gap": 8,
       "lastSeenTerm": "115000025"
     },
@@ -384,8 +384,8 @@
         17,
         29
       ],
-      "count": 3,
-      "weightedScore": 1.1290589592354168,
+      "count": 5,
+      "weightedScore": 1.1309503197742967,
       "gap": 13,
       "lastSeenTerm": "115000020"
     },
@@ -395,8 +395,8 @@
         9,
         18
       ],
-      "count": 2,
-      "weightedScore": 1.1262193829230542,
+      "count": 3,
+      "weightedScore": 1.1263175205343003,
       "gap": 9,
       "lastSeenTerm": "115000024"
     },
@@ -439,8 +439,8 @@
         15,
         27
       ],
-      "count": 2,
-      "weightedScore": 1.0521024593971835,
+      "count": 3,
+      "weightedScore": 1.0528351169332633,
       "gap": 0,
       "lastSeenTerm": "115000033"
     },
@@ -476,6 +476,17 @@
       "weightedScore": 1.0427310143790394,
       "gap": 2,
       "lastSeenTerm": "115000031"
+    },
+    {
+      "combo": [
+        28,
+        32,
+        34
+      ],
+      "count": 3,
+      "weightedScore": 1.0394125369575398,
+      "gap": 11,
+      "lastSeenTerm": "115000022"
     },
     {
       "combo": [
@@ -534,17 +545,6 @@
     },
     {
       "combo": [
-        28,
-        32,
-        34
-      ],
-      "count": 2,
-      "weightedScore": 1.039308235106922,
-      "gap": 11,
-      "lastSeenTerm": "115000022"
-    },
-    {
-      "combo": [
         31,
         32,
         34
@@ -582,8 +582,8 @@
         16,
         19
       ],
-      "count": 2,
-      "weightedScore": 1.0209002445308104,
+      "count": 3,
+      "weightedScore": 1.0210505695274967,
       "gap": 3,
       "lastSeenTerm": "115000030"
     },
@@ -593,8 +593,8 @@
         30,
         38
       ],
-      "count": 2,
-      "weightedScore": 1.0183150998652453,
+      "count": 5,
+      "weightedScore": 1.019349602195074,
       "gap": 2,
       "lastSeenTerm": "115000031"
     },
@@ -813,19 +813,19 @@
         19,
         24
       ],
-      "count": 2,
-      "weightedScore": 0.9752230726181362,
+      "count": 3,
+      "weightedScore": 0.9753733976148227,
       "gap": 3,
       "lastSeenTerm": "115000030"
     },
     {
       "combo": [
         7,
-        13,
-        19
+        35,
+        37
       ],
-      "count": 1,
-      "weightedScore": 0.97,
+      "count": 3,
+      "weightedScore": 0.9714924787953776,
       "gap": 1,
       "lastSeenTerm": "115000032"
     },
@@ -834,6 +834,17 @@
         7,
         13,
         34
+      ],
+      "count": 3,
+      "weightedScore": 0.9703524182098705,
+      "gap": 1,
+      "lastSeenTerm": "115000032"
+    },
+    {
+      "combo": [
+        7,
+        13,
+        19
       ],
       "count": 1,
       "weightedScore": 0.97,
@@ -867,17 +878,6 @@
         7,
         34,
         35
-      ],
-      "count": 1,
-      "weightedScore": 0.97,
-      "gap": 1,
-      "lastSeenTerm": "115000032"
-    },
-    {
-      "combo": [
-        7,
-        35,
-        37
       ],
       "count": 1,
       "weightedScore": 0.97,
@@ -967,8 +967,8 @@
         16,
         24
       ],
-      "count": 3,
-      "weightedScore": 0.948251839068681,
+      "count": 4,
+      "weightedScore": 0.9484021640653676,
       "gap": 3,
       "lastSeenTerm": "115000030"
     },
@@ -1000,8 +1000,8 @@
         11,
         22
       ],
-      "count": 2,
-      "weightedScore": 0.9433776026134176,
+      "count": 3,
+      "weightedScore": 0.9436377023941934,
       "gap": 2,
       "lastSeenTerm": "115000031"
     },
@@ -1011,13 +1011,79 @@
         26,
         38
       ],
-      "count": 3,
-      "weightedScore": 0.9421931144698048,
+      "count": 4,
+      "weightedScore": 0.9435000015664459,
       "gap": 25,
       "lastSeenTerm": "115000008"
     },
     {
       "combo": [
+        16,
+        30,
+        38
+      ],
+      "count": 2,
+      "weightedScore": 0.9417795704198273,
+      "gap": 2,
+      "lastSeenTerm": "115000031"
+    },
+    {
+      "combo": [
+        4,
+        16,
+        22
+      ],
+      "count": 2,
+      "weightedScore": 0.9416106778099974,
+      "gap": 2,
+      "lastSeenTerm": "115000031"
+    },
+    {
+      "combo": [
+        11,
+        22,
+        30
+      ],
+      "count": 2,
+      "weightedScore": 0.9412984150234228,
+      "gap": 2,
+      "lastSeenTerm": "115000031"
+    },
+    {
+      "combo": [
+        11,
+        22,
+        38
+      ],
+      "count": 2,
+      "weightedScore": 0.9412984150234228,
+      "gap": 2,
+      "lastSeenTerm": "115000031"
+    },
+    {
+      "combo": [
+        22,
+        30,
+        38
+      ],
+      "count": 2,
+      "weightedScore": 0.9412984150234228,
+      "gap": 2,
+      "lastSeenTerm": "115000031"
+    },
+    {
+      "combo": [
+        4,
+        22,
+        30
+      ],
+      "count": 2,
+      "weightedScore": 0.9411233565318292,
+      "gap": 2,
+      "lastSeenTerm": "115000031"
+    },
+    {
+      "combo": [
         4,
         11,
         30
@@ -1030,6 +1096,39 @@
     {
       "combo": [
         4,
+        16,
+        30
+      ],
+      "count": 1,
+      "weightedScore": 0.9409,
+      "gap": 2,
+      "lastSeenTerm": "115000031"
+    },
+    {
+      "combo": [
+        4,
+        22,
+        38
+      ],
+      "count": 1,
+      "weightedScore": 0.9409,
+      "gap": 2,
+      "lastSeenTerm": "115000031"
+    },
+    {
+      "combo": [
+        4,
+        30,
+        38
+      ],
+      "count": 1,
+      "weightedScore": 0.9409,
+      "gap": 2,
+      "lastSeenTerm": "115000031"
+    },
+    {
+      "combo": [
+        11,
         16,
         22
       ],
@@ -1040,61 +1139,6 @@
     },
     {
       "combo": [
-        4,
-        16,
-        30
-      ],
-      "count": 1,
-      "weightedScore": 0.9409,
-      "gap": 2,
-      "lastSeenTerm": "115000031"
-    },
-    {
-      "combo": [
-        4,
-        22,
-        30
-      ],
-      "count": 1,
-      "weightedScore": 0.9409,
-      "gap": 2,
-      "lastSeenTerm": "115000031"
-    },
-    {
-      "combo": [
-        4,
-        22,
-        38
-      ],
-      "count": 1,
-      "weightedScore": 0.9409,
-      "gap": 2,
-      "lastSeenTerm": "115000031"
-    },
-    {
-      "combo": [
-        4,
-        30,
-        38
-      ],
-      "count": 1,
-      "weightedScore": 0.9409,
-      "gap": 2,
-      "lastSeenTerm": "115000031"
-    },
-    {
-      "combo": [
-        11,
-        16,
-        22
-      ],
-      "count": 1,
-      "weightedScore": 0.9409,
-      "gap": 2,
-      "lastSeenTerm": "115000031"
-    },
-    {
-      "combo": [
         11,
         16,
         30
@@ -1117,52 +1161,8 @@
     },
     {
       "combo": [
-        11,
-        22,
-        30
-      ],
-      "count": 1,
-      "weightedScore": 0.9409,
-      "gap": 2,
-      "lastSeenTerm": "115000031"
-    },
-    {
-      "combo": [
-        11,
-        22,
-        38
-      ],
-      "count": 1,
-      "weightedScore": 0.9409,
-      "gap": 2,
-      "lastSeenTerm": "115000031"
-    },
-    {
-      "combo": [
         16,
         22,
-        38
-      ],
-      "count": 1,
-      "weightedScore": 0.9409,
-      "gap": 2,
-      "lastSeenTerm": "115000031"
-    },
-    {
-      "combo": [
-        16,
-        30,
-        38
-      ],
-      "count": 1,
-      "weightedScore": 0.9409,
-      "gap": 2,
-      "lastSeenTerm": "115000031"
-    },
-    {
-      "combo": [
-        22,
-        30,
         38
       ],
       "count": 1,
@@ -1238,34 +1238,23 @@
     },
     {
       "combo": [
+        10,
+        11,
+        19
+      ],
+      "count": 2,
+      "weightedScore": 0.9139406804837419,
+      "gap": 3,
+      "lastSeenTerm": "115000030"
+    },
+    {
+      "combo": [
         3,
         10,
         11
       ],
-      "count": 1,
-      "weightedScore": 0.912673,
-      "gap": 3,
-      "lastSeenTerm": "115000030"
-    },
-    {
-      "combo": [
-        3,
-        10,
-        16
-      ],
-      "count": 1,
-      "weightedScore": 0.912673,
-      "gap": 3,
-      "lastSeenTerm": "115000030"
-    },
-    {
-      "combo": [
-        3,
-        10,
-        19
-      ],
-      "count": 1,
-      "weightedScore": 0.912673,
+      "count": 3,
+      "weightedScore": 0.9138506288693136,
       "gap": 3,
       "lastSeenTerm": "115000030"
     },
@@ -1275,6 +1264,39 @@
         10,
         24
       ],
+      "count": 2,
+      "weightedScore": 0.913795268417634,
+      "gap": 3,
+      "lastSeenTerm": "115000030"
+    },
+    {
+      "combo": [
+        16,
+        19,
+        24
+      ],
+      "count": 2,
+      "weightedScore": 0.9128233249966865,
+      "gap": 3,
+      "lastSeenTerm": "115000030"
+    },
+    {
+      "combo": [
+        3,
+        10,
+        16
+      ],
+      "count": 1,
+      "weightedScore": 0.912673,
+      "gap": 3,
+      "lastSeenTerm": "115000030"
+    },
+    {
+      "combo": [
+        3,
+        10,
+        19
+      ],
       "count": 1,
       "weightedScore": 0.912673,
       "gap": 3,
@@ -1318,17 +1340,6 @@
         10,
         11,
         16
-      ],
-      "count": 1,
-      "weightedScore": 0.912673,
-      "gap": 3,
-      "lastSeenTerm": "115000030"
-    },
-    {
-      "combo": [
-        10,
-        11,
-        19
       ],
       "count": 1,
       "weightedScore": 0.912673,
@@ -1371,17 +1382,6 @@
     {
       "combo": [
         11,
-        19,
-        24
-      ],
-      "count": 1,
-      "weightedScore": 0.912673,
-      "gap": 3,
-      "lastSeenTerm": "115000030"
-    },
-    {
-      "combo": [
-        16,
         19,
         24
       ],
@@ -1396,8 +1396,8 @@
         35,
         38
       ],
-      "count": 2,
-      "weightedScore": 0.9077572297468098,
+      "count": 3,
+      "weightedScore": 0.9078647574278589,
       "gap": 5,
       "lastSeenTerm": "115000028"
     },
@@ -1425,6 +1425,17 @@
     },
     {
       "combo": [
+        4,
+        13,
+        29
+      ],
+      "count": 3,
+      "weightedScore": 0.8927125266517555,
+      "gap": 4,
+      "lastSeenTerm": "115000029"
+    },
+    {
+      "combo": [
         9,
         27,
         29
@@ -1438,21 +1449,21 @@
       "combo": [
         4,
         13,
-        29
+        34
       ],
       "count": 2,
-      "weightedScore": 0.891859343344523,
+      "weightedScore": 0.8872346145955915,
       "gap": 4,
       "lastSeenTerm": "115000029"
     },
     {
       "combo": [
         4,
-        13,
+        27,
         34
       ],
       "count": 2,
-      "weightedScore": 0.8872346145955915,
+      "weightedScore": 0.8855161665318292,
       "gap": 4,
       "lastSeenTerm": "115000029"
     },
@@ -1483,17 +1494,6 @@
         4,
         27,
         29
-      ],
-      "count": 1,
-      "weightedScore": 0.8852928099999999,
-      "gap": 4,
-      "lastSeenTerm": "115000029"
-    },
-    {
-      "combo": [
-        4,
-        27,
-        34
       ],
       "count": 1,
       "weightedScore": 0.8852928099999999,
@@ -1605,10 +1605,43 @@
         25,
         29
       ],
-      "count": 2,
-      "weightedScore": 0.8650137306899907,
+      "count": 3,
+      "weightedScore": 0.8654920361084985,
       "gap": 15,
       "lastSeenTerm": "115000018"
+    },
+    {
+      "combo": [
+        8,
+        27,
+        35
+      ],
+      "count": 2,
+      "weightedScore": 0.8590559382040286,
+      "gap": 5,
+      "lastSeenTerm": "115000028"
+    },
+    {
+      "combo": [
+        5,
+        8,
+        38
+      ],
+      "count": 2,
+      "weightedScore": 0.8588937929406063,
+      "gap": 5,
+      "lastSeenTerm": "115000028"
+    },
+    {
+      "combo": [
+        5,
+        27,
+        35
+      ],
+      "count": 2,
+      "weightedScore": 0.8588889999233881,
+      "gap": 5,
+      "lastSeenTerm": "115000028"
     },
     {
       "combo": [
@@ -1646,17 +1679,6 @@
     {
       "combo": [
         5,
-        8,
-        38
-      ],
-      "count": 1,
-      "weightedScore": 0.8587340256999999,
-      "gap": 5,
-      "lastSeenTerm": "115000028"
-    },
-    {
-      "combo": [
-        5,
         22,
         27
       ],
@@ -1670,17 +1692,6 @@
         5,
         22,
         38
-      ],
-      "count": 1,
-      "weightedScore": 0.8587340256999999,
-      "gap": 5,
-      "lastSeenTerm": "115000028"
-    },
-    {
-      "combo": [
-        5,
-        27,
-        35
       ],
       "count": 1,
       "weightedScore": 0.8587340256999999,
@@ -1724,17 +1735,6 @@
       "combo": [
         8,
         22,
-        35
-      ],
-      "count": 1,
-      "weightedScore": 0.8587340256999999,
-      "gap": 5,
-      "lastSeenTerm": "115000028"
-    },
-    {
-      "combo": [
-        8,
-        27,
         35
       ],
       "count": 1,
@@ -1803,8 +1803,8 @@
         25,
         34
       ],
-      "count": 2,
-      "weightedScore": 0.8474687687333163,
+      "count": 3,
+      "weightedScore": 0.8483755423620043,
       "gap": 6,
       "lastSeenTerm": "115000027"
     },
@@ -1847,8 +1847,19 @@
         17,
         34
       ],
-      "count": 1,
-      "weightedScore": 0.8329720049289998,
+      "count": 2,
+      "weightedScore": 0.833126979152388,
+      "gap": 6,
+      "lastSeenTerm": "115000027"
+    },
+    {
+      "combo": [
+        23,
+        25,
+        34
+      ],
+      "count": 2,
+      "weightedScore": 0.8330562790349778,
       "gap": 6,
       "lastSeenTerm": "115000027"
     },
@@ -1888,17 +1899,6 @@
     {
       "combo": [
         17,
-        25,
-        34
-      ],
-      "count": 1,
-      "weightedScore": 0.8329720049289998,
-      "gap": 6,
-      "lastSeenTerm": "115000027"
-    },
-    {
-      "combo": [
-        23,
         25,
         34
       ],
@@ -1942,6 +1942,17 @@
     },
     {
       "combo": [
+        2,
+        21,
+        34
+      ],
+      "count": 3,
+      "weightedScore": 0.8140697932879646,
+      "gap": 7,
+      "lastSeenTerm": "115000026"
+    },
+    {
+      "combo": [
         7,
         9,
         11
@@ -1954,17 +1965,6 @@
     {
       "combo": [
         2,
-        21,
-        34
-      ],
-      "count": 2,
-      "weightedScore": 0.8124022996104694,
-      "gap": 7,
-      "lastSeenTerm": "115000026"
-    },
-    {
-      "combo": [
-        2,
         29,
         34
       ],
@@ -1981,6 +1981,17 @@
       ],
       "count": 2,
       "weightedScore": 0.8124022996104694,
+      "gap": 7,
+      "lastSeenTerm": "115000026"
+    },
+    {
+      "combo": [
+        13,
+        21,
+        29
+      ],
+      "count": 2,
+      "weightedScore": 0.8088360280883623,
       "gap": 7,
       "lastSeenTerm": "115000026"
     },
@@ -1990,8 +2001,8 @@
         13,
         21
       ],
-      "count": 1,
-      "weightedScore": 0.8079828447811298,
+      "count": 2,
+      "weightedScore": 0.8084759431507255,
       "gap": 7,
       "lastSeenTerm": "115000026"
     },
@@ -2066,17 +2077,6 @@
         13,
         21,
         22
-      ],
-      "count": 1,
-      "weightedScore": 0.8079828447811298,
-      "gap": 7,
-      "lastSeenTerm": "115000026"
-    },
-    {
-      "combo": [
-        13,
-        21,
-        29
       ],
       "count": 1,
       "weightedScore": 0.8079828447811298,
@@ -2133,8 +2133,8 @@
         27,
         30
       ],
-      "count": 4,
-      "weightedScore": 0.8028344654754439,
+      "count": 5,
+      "weightedScore": 0.8030647299412472,
       "gap": 16,
       "lastSeenTerm": "115000017"
     },
@@ -2155,8 +2155,8 @@
         28,
         35
       ],
-      "count": 2,
-      "weightedScore": 0.7986884767617336,
+      "count": 3,
+      "weightedScore": 0.7991815751313293,
       "gap": 8,
       "lastSeenTerm": "115000025"
     },
@@ -2184,25 +2184,25 @@
     },
     {
       "combo": [
-        1,
-        18,
-        38
-      ],
-      "count": 2,
-      "weightedScore": 0.7912750609125029,
-      "gap": 9,
-      "lastSeenTerm": "115000024"
-    },
-    {
-      "combo": [
         7,
         14,
         36
       ],
-      "count": 2,
-      "weightedScore": 0.7909264357089133,
+      "count": 3,
+      "weightedScore": 0.7925439045760836,
       "gap": 14,
       "lastSeenTerm": "115000019"
+    },
+    {
+      "combo": [
+        1,
+        18,
+        38
+      ],
+      "count": 4,
+      "weightedScore": 0.7922654846117623,
+      "gap": 9,
+      "lastSeenTerm": "115000024"
     },
     {
       "combo": [
@@ -2232,8 +2232,8 @@
         11,
         38
       ],
-      "count": 2,
-      "weightedScore": 0.786783730961464,
+      "count": 3,
+      "weightedScore": 0.7872337685297381,
       "gap": 14,
       "lastSeenTerm": "115000019"
     },
@@ -2241,10 +2241,10 @@
       "combo": [
         1,
         11,
-        14
+        17
       ],
-      "count": 2,
-      "weightedScore": 0.7846015690633172,
+      "count": 3,
+      "weightedScore": 0.7856901694284223,
       "gap": 13,
       "lastSeenTerm": "115000020"
     },
@@ -2252,10 +2252,10 @@
       "combo": [
         1,
         11,
-        17
+        14
       ],
-      "count": 2,
-      "weightedScore": 0.7846015690633172,
+      "count": 3,
+      "weightedScore": 0.784861668844093,
       "gap": 13,
       "lastSeenTerm": "115000020"
     },
@@ -2448,6 +2448,17 @@
     },
     {
       "combo": [
+        11,
+        14,
+        36
+      ],
+      "count": 3,
+      "weightedScore": 0.7659797011595052,
+      "gap": 14,
+      "lastSeenTerm": "115000019"
+    },
+    {
+      "combo": [
         28,
         34,
         36
@@ -2459,118 +2470,107 @@
     },
     {
       "combo": [
-        11,
-        14,
-        36
-      ],
-      "count": 2,
-      "weightedScore": 0.76441075635835,
-      "gap": 14,
-      "lastSeenTerm": "115000019"
-    },
-    {
-      "combo": [
-        1,
-        9,
-        28
-      ],
-      "count": 1,
-      "weightedScore": 0.7602310586545651,
-      "gap": 9,
-      "lastSeenTerm": "115000024"
-    },
-    {
-      "combo": [
-        1,
-        18,
-        33
-      ],
-      "count": 1,
-      "weightedScore": 0.7602310586545651,
-      "gap": 9,
-      "lastSeenTerm": "115000024"
-    },
-    {
-      "combo": [
-        1,
-        28,
-        33
-      ],
-      "count": 1,
-      "weightedScore": 0.7602310586545651,
-      "gap": 9,
-      "lastSeenTerm": "115000024"
-    },
-    {
-      "combo": [
-        1,
-        28,
-        38
-      ],
-      "count": 1,
-      "weightedScore": 0.7602310586545651,
-      "gap": 9,
-      "lastSeenTerm": "115000024"
-    },
-    {
-      "combo": [
-        9,
-        18,
-        28
-      ],
-      "count": 1,
-      "weightedScore": 0.7602310586545651,
-      "gap": 9,
-      "lastSeenTerm": "115000024"
-    },
-    {
-      "combo": [
-        9,
-        18,
-        33
-      ],
-      "count": 1,
-      "weightedScore": 0.7602310586545651,
-      "gap": 9,
-      "lastSeenTerm": "115000024"
-    },
-    {
-      "combo": [
-        9,
-        28,
-        38
-      ],
-      "count": 1,
-      "weightedScore": 0.7602310586545651,
-      "gap": 9,
-      "lastSeenTerm": "115000024"
-    },
-    {
-      "combo": [
-        18,
-        28,
-        33
-      ],
-      "count": 1,
-      "weightedScore": 0.7602310586545651,
-      "gap": 9,
-      "lastSeenTerm": "115000024"
-    },
-    {
-      "combo": [
-        18,
-        28,
-        38
-      ],
-      "count": 1,
-      "weightedScore": 0.7602310586545651,
-      "gap": 9,
-      "lastSeenTerm": "115000024"
-    },
-    {
-      "combo": [
         18,
         33,
+        38
+      ],
+      "count": 2,
+      "weightedScore": 0.7612245948155866,
+      "gap": 9,
+      "lastSeenTerm": "115000024"
+    },
+    {
+      "combo": [
+        9,
+        18,
+        33
+      ],
+      "count": 2,
+      "weightedScore": 0.760755129618106,
+      "gap": 9,
+      "lastSeenTerm": "115000024"
+    },
+    {
+      "combo": [
+        1,
+        9,
+        28
+      ],
+      "count": 1,
+      "weightedScore": 0.7602310586545651,
+      "gap": 9,
+      "lastSeenTerm": "115000024"
+    },
+    {
+      "combo": [
+        1,
+        18,
+        33
+      ],
+      "count": 1,
+      "weightedScore": 0.7602310586545651,
+      "gap": 9,
+      "lastSeenTerm": "115000024"
+    },
+    {
+      "combo": [
+        1,
+        28,
+        33
+      ],
+      "count": 1,
+      "weightedScore": 0.7602310586545651,
+      "gap": 9,
+      "lastSeenTerm": "115000024"
+    },
+    {
+      "combo": [
+        1,
+        28,
+        38
+      ],
+      "count": 1,
+      "weightedScore": 0.7602310586545651,
+      "gap": 9,
+      "lastSeenTerm": "115000024"
+    },
+    {
+      "combo": [
+        9,
+        18,
+        28
+      ],
+      "count": 1,
+      "weightedScore": 0.7602310586545651,
+      "gap": 9,
+      "lastSeenTerm": "115000024"
+    },
+    {
+      "combo": [
+        9,
+        28,
+        38
+      ],
+      "count": 1,
+      "weightedScore": 0.7602310586545651,
+      "gap": 9,
+      "lastSeenTerm": "115000024"
+    },
+    {
+      "combo": [
+        18,
+        28,
+        33
+      ],
+      "count": 1,
+      "weightedScore": 0.7602310586545651,
+      "gap": 9,
+      "lastSeenTerm": "115000024"
+    },
+    {
+      "combo": [
+        18,
+        28,
         38
       ],
       "count": 1,
@@ -2606,8 +2606,8 @@
         12,
         27
       ],
-      "count": 2,
-      "weightedScore": 0.7488585523948599,
+      "count": 3,
+      "weightedScore": 0.7490888168606632,
       "gap": 18,
       "lastSeenTerm": "115000015"
     },
@@ -2625,6 +2625,17 @@
     {
       "combo": [
         9,
+        14,
+        31
+      ],
+      "count": 3,
+      "weightedScore": 0.7387111530981246,
+      "gap": 10,
+      "lastSeenTerm": "115000023"
+    },
+    {
+      "combo": [
+        9,
         13,
         18
       ],
@@ -2649,17 +2660,6 @@
         9,
         14,
         18
-      ],
-      "count": 1,
-      "weightedScore": 0.7374241268949281,
-      "gap": 10,
-      "lastSeenTerm": "115000023"
-    },
-    {
-      "combo": [
-        9,
-        14,
-        31
       ],
       "count": 1,
       "weightedScore": 0.7374241268949281,
@@ -2826,8 +2826,8 @@
         17,
         32
       ],
-      "count": 3,
-      "weightedScore": 0.7202221164683764,
+      "count": 4,
+      "weightedScore": 0.7203635572577588,
       "gap": 13,
       "lastSeenTerm": "115000020"
     },
@@ -2848,8 +2848,8 @@
         29,
         32
       ],
-      "count": 2,
-      "weightedScore": 0.7164269802313783,
+      "count": 3,
+      "weightedScore": 0.7165038949325035,
       "gap": 13,
       "lastSeenTerm": "115000020"
     },
@@ -2870,8 +2870,8 @@
         26,
         28
       ],
-      "count": 1,
-      "weightedScore": 0.7153014030880802,
+      "count": 2,
+      "weightedScore": 0.7155536998754327,
       "gap": 11,
       "lastSeenTerm": "115000022"
     },
@@ -2881,8 +2881,8 @@
         26,
         31
       ],
-      "count": 1,
-      "weightedScore": 0.7153014030880802,
+      "count": 2,
+      "weightedScore": 0.715390970636149,
       "gap": 11,
       "lastSeenTerm": "115000022"
     },
@@ -2958,8 +2958,19 @@
         19,
         37
       ],
-      "count": 3,
-      "weightedScore": 0.7127160427374293,
+      "count": 4,
+      "weightedScore": 0.7128663677341157,
+      "gap": 16,
+      "lastSeenTerm": "115000017"
+    },
+    {
+      "combo": [
+        3,
+        37,
+        38
+      ],
+      "count": 4,
+      "weightedScore": 0.7007902808118339,
       "gap": 16,
       "lastSeenTerm": "115000017"
     },
@@ -2969,8 +2980,8 @@
         27,
         31
       ],
-      "count": 2,
-      "weightedScore": 0.6993120994408583,
+      "count": 3,
+      "weightedScore": 0.7000907768094201,
       "gap": 12,
       "lastSeenTerm": "115000021"
     },
@@ -2989,17 +3000,6 @@
       "combo": [
         3,
         19,
-        38
-      ],
-      "count": 2,
-      "weightedScore": 0.6990760376739478,
-      "gap": 16,
-      "lastSeenTerm": "115000017"
-    },
-    {
-      "combo": [
-        3,
-        37,
         38
       ],
       "count": 2,
@@ -3031,6 +3031,17 @@
     },
     {
       "combo": [
+        9,
+        15,
+        31
+      ],
+      "count": 2,
+      "weightedScore": 0.6952313365471873,
+      "gap": 12,
+      "lastSeenTerm": "115000021"
+    },
+    {
+      "combo": [
         10,
         25,
         32
@@ -3046,10 +3057,21 @@
         25,
         29
       ],
-      "count": 3,
-      "weightedScore": 0.6944179743056609,
+      "count": 5,
+      "weightedScore": 0.694627970645516,
       "gap": 15,
       "lastSeenTerm": "115000018"
+    },
+    {
+      "combo": [
+        4,
+        15,
+        25
+      ],
+      "count": 2,
+      "weightedScore": 0.6941452484704783,
+      "gap": 12,
+      "lastSeenTerm": "115000021"
     },
     {
       "combo": [
@@ -3066,17 +3088,6 @@
       "combo": [
         4,
         9,
-        25
-      ],
-      "count": 1,
-      "weightedScore": 0.6938423609954377,
-      "gap": 12,
-      "lastSeenTerm": "115000021"
-    },
-    {
-      "combo": [
-        4,
-        15,
         25
       ],
       "count": 1,
@@ -3122,17 +3133,6 @@
         9,
         15,
         25
-      ],
-      "count": 1,
-      "weightedScore": 0.6938423609954377,
-      "gap": 12,
-      "lastSeenTerm": "115000021"
-    },
-    {
-      "combo": [
-        9,
-        15,
-        31
       ],
       "count": 1,
       "weightedScore": 0.6938423609954377,
@@ -3200,8 +3200,8 @@
         30,
         38
       ],
-      "count": 2,
-      "weightedScore": 0.6916687533279309,
+      "count": 3,
+      "weightedScore": 0.6920323759626033,
       "gap": 16,
       "lastSeenTerm": "115000017"
     },
@@ -3244,19 +3244,8 @@
         11,
         29
       ],
-      "count": 1,
-      "weightedScore": 0.6730270901655746,
-      "gap": 13,
-      "lastSeenTerm": "115000020"
-    },
-    {
-      "combo": [
-        1,
-        14,
-        32
-      ],
-      "count": 1,
-      "weightedScore": 0.6730270901655746,
+      "count": 2,
+      "weightedScore": 0.6741156905306797,
       "gap": 13,
       "lastSeenTerm": "115000020"
     },
@@ -3266,19 +3255,19 @@
         17,
         29
       ],
-      "count": 1,
-      "weightedScore": 0.6730270901655746,
+      "count": 2,
+      "weightedScore": 0.6741156905306797,
       "gap": 13,
       "lastSeenTerm": "115000020"
     },
     {
       "combo": [
         1,
-        17,
+        14,
         32
       ],
-      "count": 1,
-      "weightedScore": 0.6730270901655746,
+      "count": 2,
+      "weightedScore": 0.6731040048666999,
       "gap": 13,
       "lastSeenTerm": "115000020"
     },
@@ -3286,6 +3275,17 @@
       "combo": [
         1,
         29,
+        32
+      ],
+      "count": 2,
+      "weightedScore": 0.6731040048666999,
+      "gap": 13,
+      "lastSeenTerm": "115000020"
+    },
+    {
+      "combo": [
+        1,
+        17,
         32
       ],
       "count": 1,
@@ -3365,10 +3365,21 @@
         19,
         38
       ],
-      "count": 3,
-      "weightedScore": 0.6538135318215048,
+      "count": 4,
+      "weightedScore": 0.6539087253044136,
       "gap": 19,
       "lastSeenTerm": "115000014"
+    },
+    {
+      "combo": [
+        7,
+        14,
+        32
+      ],
+      "count": 2,
+      "weightedScore": 0.6529131921617326,
+      "gap": 14,
+      "lastSeenTerm": "115000019"
     },
     {
       "combo": [
@@ -3386,17 +3397,6 @@
         7,
         11,
         36
-      ],
-      "count": 1,
-      "weightedScore": 0.6528362774606074,
-      "gap": 14,
-      "lastSeenTerm": "115000019"
-    },
-    {
-      "combo": [
-        7,
-        14,
-        32
       ],
       "count": 1,
       "weightedScore": 0.6528362774606074,
@@ -3486,8 +3486,8 @@
         23,
         25
       ],
-      "count": 2,
-      "weightedScore": 0.6464819940483661,
+      "count": 4,
+      "weightedScore": 0.6470445735728519,
       "gap": 15,
       "lastSeenTerm": "115000018"
     },
@@ -3519,30 +3519,41 @@
         34,
         35
       ],
-      "count": 2,
-      "weightedScore": 0.6346078170054652,
+      "count": 3,
+      "weightedScore": 0.6347121188560829,
       "gap": 26,
       "lastSeenTerm": "115000007"
     },
     {
       "combo": [
-        7,
-        9,
-        25
+        23,
+        25,
+        29
       ],
-      "count": 1,
-      "weightedScore": 0.6332511891367891,
+      "count": 3,
+      "weightedScore": 0.6345826778625294,
       "gap": 15,
       "lastSeenTerm": "115000018"
     },
     {
       "combo": [
-        7,
-        9,
+        11,
+        23,
         29
       ],
-      "count": 1,
-      "weightedScore": 0.6332511891367891,
+      "count": 2,
+      "weightedScore": 0.6337294945552969,
+      "gap": 15,
+      "lastSeenTerm": "115000018"
+    },
+    {
+      "combo": [
+        9,
+        25,
+        29
+      ],
+      "count": 2,
+      "weightedScore": 0.6335361759620549,
       "gap": 15,
       "lastSeenTerm": "115000018"
     },
@@ -3552,8 +3563,8 @@
         11,
         23
       ],
-      "count": 1,
-      "weightedScore": 0.6332511891367891,
+      "count": 2,
+      "weightedScore": 0.6333354632427671,
       "gap": 15,
       "lastSeenTerm": "115000018"
     },
@@ -3562,6 +3573,39 @@
         7,
         11,
         25
+      ],
+      "count": 2,
+      "weightedScore": 0.6333354632427671,
+      "gap": 15,
+      "lastSeenTerm": "115000018"
+    },
+    {
+      "combo": [
+        7,
+        23,
+        25
+      ],
+      "count": 2,
+      "weightedScore": 0.6333354632427671,
+      "gap": 15,
+      "lastSeenTerm": "115000018"
+    },
+    {
+      "combo": [
+        7,
+        9,
+        25
+      ],
+      "count": 1,
+      "weightedScore": 0.6332511891367891,
+      "gap": 15,
+      "lastSeenTerm": "115000018"
+    },
+    {
+      "combo": [
+        7,
+        9,
+        29
       ],
       "count": 1,
       "weightedScore": 0.6332511891367891,
@@ -3573,17 +3617,6 @@
         7,
         11,
         29
-      ],
-      "count": 1,
-      "weightedScore": 0.6332511891367891,
-      "gap": 15,
-      "lastSeenTerm": "115000018"
-    },
-    {
-      "combo": [
-        7,
-        23,
-        25
       ],
       "count": 1,
       "weightedScore": 0.6332511891367891,
@@ -3625,36 +3658,14 @@
     },
     {
       "combo": [
-        9,
-        25,
-        29
+        4,
+        13,
+        24
       ],
-      "count": 1,
-      "weightedScore": 0.6332511891367891,
-      "gap": 15,
-      "lastSeenTerm": "115000018"
-    },
-    {
-      "combo": [
-        11,
-        23,
-        29
-      ],
-      "count": 1,
-      "weightedScore": 0.6332511891367891,
-      "gap": 15,
-      "lastSeenTerm": "115000018"
-    },
-    {
-      "combo": [
-        23,
-        25,
-        29
-      ],
-      "count": 1,
-      "weightedScore": 0.6332511891367891,
-      "gap": 15,
-      "lastSeenTerm": "115000018"
+      "count": 4,
+      "weightedScore": 0.632626143011349,
+      "gap": 17,
+      "lastSeenTerm": "115000016"
     },
     {
       "combo": [
@@ -3669,14 +3680,14 @@
     },
     {
       "combo": [
-        4,
-        13,
-        24
+        3,
+        27,
+        37
       ],
-      "count": 3,
-      "weightedScore": 0.6316018789278217,
-      "gap": 17,
-      "lastSeenTerm": "115000016"
+      "count": 4,
+      "weightedScore": 0.6295060603306595,
+      "gap": 16,
+      "lastSeenTerm": "115000017"
     },
     {
       "combo": [
@@ -3703,17 +3714,6 @@
     {
       "combo": [
         3,
-        27,
-        37
-      ],
-      "count": 2,
-      "weightedScore": 0.627893658526167,
-      "gap": 16,
-      "lastSeenTerm": "115000017"
-    },
-    {
-      "combo": [
-        3,
         30,
         37
       ],
@@ -3752,17 +3752,6 @@
       ],
       "count": 2,
       "weightedScore": 0.627893658526167,
-      "gap": 16,
-      "lastSeenTerm": "115000017"
-    },
-    {
-      "combo": [
-        19,
-        30,
-        38
-      ],
-      "count": 2,
-      "weightedScore": 0.6267025178039882,
       "gap": 16,
       "lastSeenTerm": "115000017"
     },
@@ -3772,10 +3761,21 @@
         16,
         26
       ],
-      "count": 3,
-      "weightedScore": 0.6256164514178214,
+      "count": 4,
+      "weightedScore": 0.6269233385144626,
       "gap": 28,
       "lastSeenTerm": "115000005"
+    },
+    {
+      "combo": [
+        19,
+        30,
+        38
+      ],
+      "count": 3,
+      "weightedScore": 0.6267948554824098,
+      "gap": 16,
+      "lastSeenTerm": "115000017"
     },
     {
       "combo": [
@@ -3794,8 +3794,8 @@
         12,
         14
       ],
-      "count": 2,
-      "weightedScore": 0.6185566385709703,
+      "count": 3,
+      "weightedScore": 0.6187604900469444,
       "gap": 23,
       "lastSeenTerm": "115000010"
     },
@@ -3824,18 +3824,18 @@
     {
       "combo": [
         3,
-        27,
+        30,
         38
       ],
-      "count": 1,
-      "weightedScore": 0.6142536534626855,
+      "count": 2,
+      "weightedScore": 0.6144397032008173,
       "gap": 16,
       "lastSeenTerm": "115000017"
     },
     {
       "combo": [
         3,
-        30,
+        27,
         38
       ],
       "count": 1,
@@ -3882,8 +3882,8 @@
         6,
         12
       ],
-      "count": 2,
-      "weightedScore": 0.6119656381824404,
+      "count": 3,
+      "weightedScore": 0.612634314933867,
       "gap": 18,
       "lastSeenTerm": "115000015"
     },
@@ -3893,8 +3893,8 @@
         3,
         12
       ],
-      "count": 3,
-      "weightedScore": 0.6112251869735514,
+      "count": 4,
+      "weightedScore": 0.611893863724978,
       "gap": 18,
       "lastSeenTerm": "115000015"
     },
@@ -4124,8 +4124,8 @@
         12,
         28
       ],
-      "count": 2,
-      "weightedScore": 0.5939391297499206,
+      "count": 3,
+      "weightedScore": 0.5946078065013471,
       "gap": 34,
       "lastSeenTerm": "114000103"
     },
@@ -4179,8 +4179,19 @@
         3,
         6
       ],
-      "count": 1,
-      "weightedScore": 0.5779512625430407,
+      "count": 2,
+      "weightedScore": 0.5786199392944673,
+      "gap": 18,
+      "lastSeenTerm": "115000015"
+    },
+    {
+      "combo": [
+        3,
+        6,
+        12
+      ],
+      "count": 2,
+      "weightedScore": 0.5786199392944673,
       "gap": 18,
       "lastSeenTerm": "115000015"
     },
@@ -4244,17 +4255,6 @@
         2,
         23,
         27
-      ],
-      "count": 1,
-      "weightedScore": 0.5779512625430407,
-      "gap": 18,
-      "lastSeenTerm": "115000015"
-    },
-    {
-      "combo": [
-        3,
-        6,
-        12
       ],
       "count": 1,
       "weightedScore": 0.5779512625430407,
@@ -4384,6 +4384,28 @@
     },
     {
       "combo": [
+        6,
+        33,
+        38
+      ],
+      "count": 2,
+      "weightedScore": 0.561606260827771,
+      "gap": 19,
+      "lastSeenTerm": "115000014"
+    },
+    {
+      "combo": [
+        2,
+        33,
+        36
+      ],
+      "count": 2,
+      "weightedScore": 0.5606920181730641,
+      "gap": 19,
+      "lastSeenTerm": "115000014"
+    },
+    {
+      "combo": [
         2,
         6,
         19
@@ -4463,17 +4485,6 @@
       "combo": [
         2,
         33,
-        36
-      ],
-      "count": 1,
-      "weightedScore": 0.5606127246667495,
-      "gap": 19,
-      "lastSeenTerm": "115000014"
-    },
-    {
-      "combo": [
-        2,
-        33,
         38
       ],
       "count": 1,
@@ -4519,17 +4530,6 @@
         6,
         33,
         36
-      ],
-      "count": 1,
-      "weightedScore": 0.5606127246667495,
-      "gap": 19,
-      "lastSeenTerm": "115000014"
-    },
-    {
-      "combo": [
-        6,
-        33,
-        38
       ],
       "count": 1,
       "weightedScore": 0.5606127246667495,
@@ -4605,18 +4605,18 @@
     {
       "combo": [
         6,
-        10,
+        22,
         25
       ],
-      "count": 2,
-      "weightedScore": 0.5516776010742795,
+      "count": 4,
+      "weightedScore": 0.5529691451382477,
       "gap": 20,
       "lastSeenTerm": "115000013"
     },
     {
       "combo": [
         6,
-        22,
+        10,
         25
       ],
       "count": 2,
@@ -4641,8 +4641,8 @@
         27,
         29
       ],
-      "count": 2,
-      "weightedScore": 0.5484088737391664,
+      "count": 3,
+      "weightedScore": 0.5491415312752461,
       "gap": 23,
       "lastSeenTerm": "115000010"
     },
@@ -4652,8 +4652,8 @@
         14,
         17
       ],
-      "count": 3,
-      "weightedScore": 0.546419499769905,
+      "count": 4,
+      "weightedScore": 0.5471981771384669,
       "gap": 29,
       "lastSeenTerm": "115000004"
     },
@@ -4671,22 +4671,11 @@
     {
       "combo": [
         6,
-        10,
+        25,
         32
       ],
-      "count": 1,
-      "weightedScore": 0.543794342926747,
-      "gap": 20,
-      "lastSeenTerm": "115000013"
-    },
-    {
-      "combo": [
-        6,
-        10,
-        35
-      ],
-      "count": 1,
-      "weightedScore": 0.543794342926747,
+      "count": 3,
+      "weightedScore": 0.544786639230233,
       "gap": 20,
       "lastSeenTerm": "115000013"
     },
@@ -4696,30 +4685,41 @@
         22,
         32
       ],
-      "count": 1,
-      "weightedScore": 0.543794342926747,
+      "count": 2,
+      "weightedScore": 0.5446219307347625,
       "gap": 20,
       "lastSeenTerm": "115000013"
     },
     {
       "combo": [
-        6,
+        22,
         25,
         32
       ],
-      "count": 1,
-      "weightedScore": 0.543794342926747,
+      "count": 2,
+      "weightedScore": 0.5446219307347625,
       "gap": 20,
       "lastSeenTerm": "115000013"
     },
     {
       "combo": [
         6,
-        25,
+        10,
+        32
+      ],
+      "count": 2,
+      "weightedScore": 0.5441470568823792,
+      "gap": 20,
+      "lastSeenTerm": "115000013"
+    },
+    {
+      "combo": [
+        6,
+        10,
         35
       ],
-      "count": 1,
-      "weightedScore": 0.543794342926747,
+      "count": 2,
+      "weightedScore": 0.5441470568823792,
       "gap": 20,
       "lastSeenTerm": "115000013"
     },
@@ -4729,6 +4729,39 @@
         32,
         35
       ],
+      "count": 2,
+      "weightedScore": 0.5441470568823792,
+      "gap": 20,
+      "lastSeenTerm": "115000013"
+    },
+    {
+      "combo": [
+        10,
+        32,
+        35
+      ],
+      "count": 2,
+      "weightedScore": 0.5441470568823792,
+      "gap": 20,
+      "lastSeenTerm": "115000013"
+    },
+    {
+      "combo": [
+        25,
+        32,
+        35
+      ],
+      "count": 2,
+      "weightedScore": 0.5440707801472547,
+      "gap": 20,
+      "lastSeenTerm": "115000013"
+    },
+    {
+      "combo": [
+        6,
+        25,
+        35
+      ],
       "count": 1,
       "weightedScore": 0.543794342926747,
       "gap": 20,
@@ -4747,28 +4780,6 @@
     },
     {
       "combo": [
-        10,
-        32,
-        35
-      ],
-      "count": 1,
-      "weightedScore": 0.543794342926747,
-      "gap": 20,
-      "lastSeenTerm": "115000013"
-    },
-    {
-      "combo": [
-        22,
-        25,
-        32
-      ],
-      "count": 1,
-      "weightedScore": 0.543794342926747,
-      "gap": 20,
-      "lastSeenTerm": "115000013"
-    },
-    {
-      "combo": [
         22,
         25,
         35
@@ -4781,17 +4792,6 @@
     {
       "combo": [
         22,
-        32,
-        35
-      ],
-      "count": 1,
-      "weightedScore": 0.543794342926747,
-      "gap": 20,
-      "lastSeenTerm": "115000013"
-    },
-    {
-      "combo": [
-        25,
         32,
         35
       ],
@@ -4806,8 +4806,8 @@
         34,
         37
       ],
-      "count": 2,
-      "weightedScore": 0.5419772764432611,
+      "count": 3,
+      "weightedScore": 0.5436447701207563,
       "gap": 21,
       "lastSeenTerm": "115000012"
     },
@@ -4824,6 +4824,17 @@
     },
     {
       "combo": [
+        14,
+        22,
+        31
+      ],
+      "count": 4,
+      "weightedScore": 0.5355174342247231,
+      "gap": 32,
+      "lastSeenTerm": "115000001"
+    },
+    {
+      "combo": [
         13,
         14,
         33
@@ -4835,17 +4846,6 @@
     },
     {
       "combo": [
-        14,
-        22,
-        31
-      ],
-      "count": 2,
-      "weightedScore": 0.5332900197431861,
-      "gap": 32,
-      "lastSeenTerm": "115000001"
-    },
-    {
-      "combo": [
         12,
         26,
         38
@@ -4854,6 +4854,17 @@
       "weightedScore": 0.5314593162009039,
       "gap": 25,
       "lastSeenTerm": "115000008"
+    },
+    {
+      "combo": [
+        14,
+        33,
+        34
+      ],
+      "count": 2,
+      "weightedScore": 0.5276843641149188,
+      "gap": 21,
+      "lastSeenTerm": "115000012"
     },
     {
       "combo": [
@@ -4945,17 +4956,6 @@
     },
     {
       "combo": [
-        14,
-        33,
-        34
-      ],
-      "count": 1,
-      "weightedScore": 0.5274805126389446,
-      "gap": 21,
-      "lastSeenTerm": "115000012"
-    },
-    {
-      "combo": [
         16,
         33,
         37
@@ -5033,12 +5033,56 @@
     },
     {
       "combo": [
+        34,
+        36,
+        37
+      ],
+      "count": 2,
+      "weightedScore": 0.5134283298854486,
+      "gap": 22,
+      "lastSeenTerm": "115000011"
+    },
+    {
+      "combo": [
+        7,
+        28,
+        37
+      ],
+      "count": 2,
+      "weightedScore": 0.512092633701002,
+      "gap": 22,
+      "lastSeenTerm": "115000011"
+    },
+    {
+      "combo": [
+        28,
+        36,
+        37
+      ],
+      "count": 2,
+      "weightedScore": 0.5120425598324964,
+      "gap": 22,
+      "lastSeenTerm": "115000011"
+    },
+    {
+      "combo": [
         7,
         22,
         28
       ],
-      "count": 1,
-      "weightedScore": 0.5116560972597762,
+      "count": 2,
+      "weightedScore": 0.5119982297967395,
+      "gap": 22,
+      "lastSeenTerm": "115000011"
+    },
+    {
+      "combo": [
+        7,
+        28,
+        34
+      ],
+      "count": 2,
+      "weightedScore": 0.5119242413636688,
       "gap": 22,
       "lastSeenTerm": "115000011"
     },
@@ -5068,17 +5112,6 @@
       "combo": [
         7,
         28,
-        34
-      ],
-      "count": 1,
-      "weightedScore": 0.5116560972597762,
-      "gap": 22,
-      "lastSeenTerm": "115000011"
-    },
-    {
-      "combo": [
-        7,
-        28,
         36
       ],
       "count": 1,
@@ -5089,17 +5122,6 @@
     {
       "combo": [
         7,
-        28,
-        37
-      ],
-      "count": 1,
-      "weightedScore": 0.5116560972597762,
-      "gap": 22,
-      "lastSeenTerm": "115000011"
-    },
-    {
-      "combo": [
-        7,
         34,
         36
       ],
@@ -5156,28 +5178,6 @@
       "combo": [
         28,
         34,
-        37
-      ],
-      "count": 1,
-      "weightedScore": 0.5116560972597762,
-      "gap": 22,
-      "lastSeenTerm": "115000011"
-    },
-    {
-      "combo": [
-        28,
-        36,
-        37
-      ],
-      "count": 1,
-      "weightedScore": 0.5116560972597762,
-      "gap": 22,
-      "lastSeenTerm": "115000011"
-    },
-    {
-      "combo": [
-        34,
-        36,
         37
       ],
       "count": 1,
@@ -5202,8 +5202,8 @@
         15,
         25
       ],
-      "count": 2,
-      "weightedScore": 0.5010758732571277,
+      "count": 3,
+      "weightedScore": 0.5019826468858156,
       "gap": 24,
       "lastSeenTerm": "115000009"
     },
@@ -5257,19 +5257,19 @@
         12,
         38
       ],
-      "count": 2,
-      "weightedScore": 0.49801870751230953,
+      "count": 3,
+      "weightedScore": 0.4981262351933586,
       "gap": 25,
       "lastSeenTerm": "115000008"
     },
     {
       "combo": [
-        1,
         12,
-        15
+        14,
+        27
       ],
-      "count": 1,
-      "weightedScore": 0.49630641434198286,
+      "count": 2,
+      "weightedScore": 0.49708509171054466,
       "gap": 23,
       "lastSeenTerm": "115000010"
     },
@@ -5278,6 +5278,28 @@
         1,
         12,
         27
+      ],
+      "count": 2,
+      "weightedScore": 0.49653667880778624,
+      "gap": 23,
+      "lastSeenTerm": "115000010"
+    },
+    {
+      "combo": [
+        1,
+        27,
+        29
+      ],
+      "count": 2,
+      "weightedScore": 0.4964355035315508,
+      "gap": 23,
+      "lastSeenTerm": "115000010"
+    },
+    {
+      "combo": [
+        1,
+        12,
+        15
       ],
       "count": 1,
       "weightedScore": 0.49630641434198286,
@@ -5330,31 +5352,9 @@
     },
     {
       "combo": [
-        1,
-        27,
-        29
-      ],
-      "count": 1,
-      "weightedScore": 0.49630641434198286,
-      "gap": 23,
-      "lastSeenTerm": "115000010"
-    },
-    {
-      "combo": [
         12,
         14,
         15
-      ],
-      "count": 1,
-      "weightedScore": 0.49630641434198286,
-      "gap": 23,
-      "lastSeenTerm": "115000010"
-    },
-    {
-      "combo": [
-        12,
-        14,
-        27
       ],
       "count": 1,
       "weightedScore": 0.49630641434198286,
@@ -5444,8 +5444,8 @@
         10,
         25
       ],
-      "count": 2,
-      "weightedScore": 0.4895442921669116,
+      "count": 3,
+      "weightedScore": 0.48967737380564147,
       "gap": 24,
       "lastSeenTerm": "115000009"
     },
@@ -5457,6 +5457,28 @@
       ],
       "count": 2,
       "weightedScore": 0.48930048005925597,
+      "gap": 24,
+      "lastSeenTerm": "115000009"
+    },
+    {
+      "combo": [
+        10,
+        17,
+        23
+      ],
+      "count": 2,
+      "weightedScore": 0.48162737807252154,
+      "gap": 24,
+      "lastSeenTerm": "115000009"
+    },
+    {
+      "combo": [
+        5,
+        10,
+        17
+      ],
+      "count": 2,
+      "weightedScore": 0.48157219613511154,
       "gap": 24,
       "lastSeenTerm": "115000009"
     },
@@ -5475,29 +5497,7 @@
       "combo": [
         5,
         10,
-        17
-      ],
-      "count": 1,
-      "weightedScore": 0.48141722191172337,
-      "gap": 24,
-      "lastSeenTerm": "115000009"
-    },
-    {
-      "combo": [
-        5,
-        10,
         23
-      ],
-      "count": 1,
-      "weightedScore": 0.48141722191172337,
-      "gap": 24,
-      "lastSeenTerm": "115000009"
-    },
-    {
-      "combo": [
-        10,
-        15,
-        17
       ],
       "count": 1,
       "weightedScore": 0.48141722191172337,

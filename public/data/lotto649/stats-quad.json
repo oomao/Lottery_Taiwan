@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-04-25T09:01:21.174Z",
-  "totalDraws": 235,
+  "generatedAt": "2026-04-25T09:33:38.748Z",
+  "totalDraws": 353,
   "windowSize": null,
   "decayFactor": 0.97,
   "data": [
@@ -3966,6 +3966,18 @@
     },
     {
       "combo": [
+        22,
+        27,
+        28,
+        31
+      ],
+      "count": 2,
+      "weightedScore": 0.5117603991103938,
+      "gap": 22,
+      "lastSeenTerm": "115000025"
+    },
+    {
+      "combo": [
         12,
         19,
         22,
@@ -4123,18 +4135,6 @@
     {
       "combo": [
         19,
-        27,
-        28,
-        31
-      ],
-      "count": 1,
-      "weightedScore": 0.5116560972597762,
-      "gap": 22,
-      "lastSeenTerm": "115000025"
-    },
-    {
-      "combo": [
-        22,
         27,
         28,
         31
@@ -5947,6 +5947,18 @@
     {
       "combo": [
         9,
+        25,
+        35,
+        39
+      ],
+      "count": 2,
+      "weightedScore": 0.3662330521522211,
+      "gap": 33,
+      "lastSeenTerm": "115000014"
+    },
+    {
+      "combo": [
+        9,
         20,
         25,
         35
@@ -5986,18 +5998,6 @@
         20,
         35,
         39
-      ],
-      "count": 1,
-      "weightedScore": 0.36598832426848915,
-      "gap": 33,
-      "lastSeenTerm": "115000014"
-    },
-    {
-      "combo": [
-        9,
-        20,
-        35,
-        48
       ],
       "count": 1,
       "weightedScore": 0.36598832426848915,

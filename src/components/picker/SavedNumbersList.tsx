@@ -39,18 +39,40 @@ export default function SavedNumbersList({ game }: Props) {
   }, [game.id]);
 
   const addManual = () => {
-    const nums = manualInput
-      .split(/[\s,，、]+/)
-      .map((s) => parseInt(s, 10))
-      .filter((n) => Number.isFinite(n));
     const [min, max] = game.numberRange;
-    const valid = nums.filter((n) => n >= min && n <= max);
-    const unique = Array.from(new Set(valid));
-    if (unique.length !== game.pickCount) {
-      alert(`需要 ${game.pickCount} 個 ${min}–${max} 範圍內的不重複號碼`);
+    // 支援多種分隔符:空格、半形/全形逗號、頓號、半形/全形分號
+    const tokens = manualInput.trim().split(/[\s,\uFF0C\u3001;\uFF1B]+/).filter(Boolean);
+    if (tokens.length === 0) {
+      alert('請輸入號碼');
       return;
     }
-    const next = [...items, { numbers: unique.sort((a, b) => a - b), savedAt: new Date().toISOString() }];
+    const parsed = tokens.map((s) => Number(s));
+    if (parsed.some((n) => !Number.isFinite(n) || !Number.isInteger(n))) {
+      alert('只能輸入整數');
+      return;
+    }
+    const outOfRange = parsed.filter((n) => n < min || n > max);
+    if (outOfRange.length > 0) {
+      alert(`號碼必須在 ${min}–${max} 範圍內,以下無效:${outOfRange.join(', ')}`);
+      return;
+    }
+    const unique = Array.from(new Set(parsed));
+    if (unique.length !== parsed.length) {
+      alert('號碼不能重複');
+      return;
+    }
+    if (unique.length !== game.pickCount) {
+      alert(`需要剛好 ${game.pickCount} 個號碼,你輸入了 ${unique.length} 個`);
+      return;
+    }
+    const sortedNums = unique.sort((a, b) => a - b);
+    // 防呆:檢查是否已存在相同組合
+    const exists = items.some((it) => it.numbers.join(',') === sortedNums.join(','));
+    if (exists) {
+      alert('此組號碼已經收藏過了');
+      return;
+    }
+    const next = [...items, { numbers: sortedNums, savedAt: new Date().toISOString() }];
     writeSaved(game.id, next);
     setItems(next);
     setManualInput('');

@@ -7,8 +7,13 @@ on:
     - cron: '30 13 * * *'
   workflow_dispatch:
     inputs:
+      months_back:
+        description: '回填幾個月歷史 (1–36,首次建議填 36 抓滿 3 年)'
+        required: false
+        default: '12'
+        type: string
       game:
-        description: '要更新的彩種 (all = 全部)'
+        description: '要更新的彩種'
         required: false
         default: 'all'
         type: choice
@@ -23,6 +28,8 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+    env:
+      MONTHS_BACK: ${{ github.event.inputs.months_back || '12' }}
     steps:
       - uses: actions/checkout@v4
 
