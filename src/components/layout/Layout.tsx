@@ -21,10 +21,10 @@ export default function Layout({ children }: LayoutProps) {
           <NavLink
             to="/"
             className="text-base sm:text-xl font-bold text-brand whitespace-nowrap shrink-0"
-            aria-label="台灣運彩資訊首頁"
+            aria-label="台灣彩券資訊首頁"
           >
-            <span className="sm:hidden">🎲 運彩</span>
-            <span className="hidden sm:inline">🎲 台灣運彩資訊</span>
+            <span className="sm:hidden">🎲 彩券</span>
+            <span className="hidden sm:inline">🎲 台灣彩券資訊</span>
           </NavLink>
 
           {/* 導覽:不換行、超寬可橫向捲動 */}

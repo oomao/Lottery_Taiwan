@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <div className="space-y-6">
       <section className="text-center py-8">
-        <h1 className="text-4xl font-bold mb-3">台灣運彩資訊網</h1>
+        <h1 className="text-4xl font-bold mb-3">台灣彩券資訊網</h1>
         <p className="text-gray-600 dark:text-gray-300">
           開獎查詢 ‧ 統計分析 ‧ 組合推薦 ‧ 對獎工具
         </p>

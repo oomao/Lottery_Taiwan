@@ -6,10 +6,11 @@ interface BallProps {
   size?: 'sm' | 'md' | 'lg';
 }
 
+// lg 在手機 (<640px) 縮成 md 大小,確保最新一期 5–6 顆能單列並排
 const sizeClasses = {
   sm: 'h-8 w-8 text-sm',
   md: 'h-10 w-10 text-base',
-  lg: 'h-14 w-14 text-xl',
+  lg: 'h-10 w-10 text-base sm:h-14 sm:w-14 sm:text-xl',
 };
 
 const colorClasses = {

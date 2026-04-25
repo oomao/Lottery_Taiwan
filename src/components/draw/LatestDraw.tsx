@@ -16,22 +16,22 @@ export default function LatestDraw({ draw, game }: Props) {
         </div>
         <p className="text-sm text-gray-500">{draw.drawDate}</p>
       </div>
-      <div className="flex flex-wrap gap-3 items-center">
+      {/* 主號:flex-nowrap + 自動 wrap 的 gap,手機儘量單列並排 */}
+      <div className="flex flex-nowrap gap-1.5 sm:gap-3 items-center justify-center sm:justify-start">
         {[...draw.numbers]
           .sort((a, b) => a - b)
           .map((n) => (
             <Ball key={n} number={n} color={game.ballColor} size="lg" />
           ))}
-        {game.hasSecondZone && draw.secondZone && (
-          <>
-            <span className="text-gray-400 mx-2">|</span>
-            <span className="text-xs text-gray-500">{game.hasSecondZone.label}</span>
-            {draw.secondZone.map((n) => (
-              <Ball key={`s${n}`} number={n} color="yellow" size="lg" />
-            ))}
-          </>
-        )}
       </div>
+      {game.hasSecondZone && draw.secondZone && (
+        <div className="flex flex-nowrap gap-1.5 sm:gap-3 items-center justify-center sm:justify-start mt-3 pt-3 border-t border-gray-100 dark:border-gray-700">
+          <span className="text-xs text-gray-500 mr-1">{game.hasSecondZone.label}</span>
+          {draw.secondZone.map((n) => (
+            <Ball key={`s${n}`} number={n} color="yellow" size="lg" />
+          ))}
+        </div>
+      )}
     </div>
   );
 }
