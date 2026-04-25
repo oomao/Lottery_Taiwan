@@ -21,14 +21,68 @@ const COMBO_LABELS: Record<ComboK, string> = {
   4: '四合',
 };
 
-const METHODS: { key: RecommendMethod; label: string; desc: string }[] = [
-  { key: 'composite', label: '🏆 綜合推薦', desc: '加權近期/邊際/共現/馬可夫的綜合分數 (預設)' },
-  { key: 'frequency', label: '📊 純頻率', desc: '歷史出現次數最多的組合' },
-  { key: 'weighted', label: '⚡ 衰減加權', desc: '近期出現權重更高 (decay 0.97)' },
-  { key: 'gap', label: '⏳ 遺漏值', desc: '最久沒出現的組合 (賭徒謬誤,但彩迷愛看)' },
-  { key: 'marginal', label: '🎯 邊際機率', desc: '依單號頻率推導,適合稀疏的四合' },
-  { key: 'lift', label: '🔗 共現分析 (Lift)', desc: '組合內號碼互相正關聯的程度' },
-  { key: 'markov', label: '🔄 馬可夫鏈', desc: '給定上期開獎,預測下期條件機率' },
+interface MethodInfo {
+  key: RecommendMethod;
+  label: string;
+  desc: string;       // 一行短說明 (按鈕顯示)
+  detail: string;     // 詳細解釋 (點選後展開)
+  bestFor: string;    // 適合什麼合數
+  caveat?: string;    // 注意事項
+}
+
+const METHODS: MethodInfo[] = [
+  {
+    key: 'composite',
+    label: '🏆 綜合推薦',
+    desc: '加權近期/邊際/共現/馬可夫的綜合分數 (預設)',
+    detail: '把「衰減加權 30% + 邊際機率 30% + Lift 共現 20% + 馬可夫 20%」四種方法的分數標準化到 [0,1] 後加權平均。試圖避免單一方法的偏差,給出折衷推薦。',
+    bestFor: '不確定該用什麼時的安全選擇',
+  },
+  {
+    key: 'frequency',
+    label: '📊 純頻率',
+    desc: '歷史出現次數最多的組合',
+    detail: '只算這個組合在統計範圍內出現過幾次。最簡單也最直觀,但對 4 合來說多數組合都是 0 次,沒鑑別力。',
+    bestFor: '二合 (有足夠樣本)',
+    caveat: '對 3/4 合資料太稀疏',
+  },
+  {
+    key: 'weighted',
+    label: '⚡ 衰減加權',
+    desc: '近期出現權重更高 (decay 0.97)',
+    detail: '每出現一次給一個權重,但越久遠的權重越低 (weight = 0.97^期距)。比純頻率更關注近期表現。',
+    bestFor: '二合,想看「最近熱」的組合',
+  },
+  {
+    key: 'gap',
+    label: '⏳ 遺漏值',
+    desc: '最久沒出現的組合',
+    detail: '依「距離上次出現幾期」排序,最久沒開的排前面。彩迷俗稱「該開了」。',
+    bestFor: '想押冷組合的玩家',
+    caveat: '⚠️ 賭徒謬誤 — 過去未出現不代表下次更可能出',
+  },
+  {
+    key: 'marginal',
+    label: '🎯 邊際機率',
+    desc: '依單號頻率推導,適合稀疏的四合',
+    detail: 'P(組合) ≈ Π P(單號出現)。即使這個組合從未出現過,也能由「組成它的單號各自的頻率」估出機率。',
+    bestFor: '🎉 四合 (其他方法失效時的解法)',
+  },
+  {
+    key: 'lift',
+    label: '🔗 共現分析 (Lift)',
+    desc: '組合內號碼互相正關聯的程度',
+    detail: 'Lift(A,B) = P(A,B) / (P(A)×P(B))。> 1 表示 A 和 B 比獨立預期更常一起出現,< 1 表示比較少。組合分數 = 所有號碼對 lift 的幾何平均。',
+    bestFor: '二合、三合 (尋找「有伴」的號碼)',
+  },
+  {
+    key: 'markov',
+    label: '🔄 馬可夫鏈',
+    desc: '給定上期開獎,預測下期條件機率',
+    detail: '建立 39×39 轉移矩陣 T,T[a][b] = P(下期含 b | 本期含 a)。組合分數 = 各號碼在「上期任一號條件下」的最大條件機率連乘。',
+    bestFor: '想結合「上期開了什麼」做動態預測',
+    caveat: '一階馬可夫,看不到 2 期前以上的依賴',
+  },
 ];
 
 const WINDOW_PRESETS = [
@@ -139,6 +193,9 @@ export default function ComboRecommend({ draws, game }: Props) {
               </button>
             ))}
           </div>
+
+          {/* 詳細說明 (依當前選擇的方法) */}
+          <MethodDetail info={METHODS.find((m) => m.key === method)!} />
         </div>
 
         {/* 視窗 + Top N + 篩選 */}
@@ -333,6 +390,37 @@ function ResultList({ results, game, method, k, baseline }: ResultListProps) {
           })}
         </tbody>
       </table>
+    </div>
+  );
+}
+
+function MethodDetail({ info }: { info: MethodInfo }) {
+  return (
+    <div className="mt-3 p-3 rounded-lg bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 text-sm space-y-2">
+      <div className="flex items-baseline justify-between gap-2 flex-wrap">
+        <p className="font-bold text-blue-900 dark:text-blue-200">{info.label}</p>
+        <span className="text-xs text-blue-700 dark:text-blue-300">適合:{info.bestFor}</span>
+      </div>
+      <p className="text-xs leading-relaxed text-gray-700 dark:text-gray-300">
+        {info.detail}
+      </p>
+      {info.caveat && (
+        <p className="text-xs text-amber-700 dark:text-amber-300">
+          {info.caveat}
+        </p>
+      )}
+      <p className="text-[11px] text-gray-500 pt-1 border-t border-blue-200 dark:border-blue-800">
+        💡 想看每個方法的數學細節?到{' '}
+        <a
+          href="https://github.com/oomao/Lottery_Taiwan#-演算法說明"
+          target="_blank"
+          rel="noreferrer"
+          className="underline hover:text-brand"
+        >
+          README 演算法章節
+        </a>{' '}
+        看完整說明。
+      </p>
     </div>
   );
 }

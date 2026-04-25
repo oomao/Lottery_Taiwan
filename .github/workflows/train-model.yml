@@ -1,0 +1,72 @@
+name: Train ML Model
+
+# 純手動觸發 (訓練成本高,不排程)
+on:
+  workflow_dispatch:
+    inputs:
+      game:
+        description: '訓練哪個彩種 (目前僅 539)'
+        required: false
+        default: '539'
+        type: choice
+        options:
+          - '539'
+      epochs:
+        description: '訓練 epoch 數 (預設 100,EarlyStopping 通常會提早停)'
+        required: false
+        default: '100'
+        type: string
+      batch:
+        description: 'Batch size (預設 32)'
+        required: false
+        default: '32'
+        type: string
+
+jobs:
+  train:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    timeout-minutes: 60
+    env:
+      GAME: ${{ github.event.inputs.game || '539' }}
+      EPOCHS: ${{ github.event.inputs.epochs || '100' }}
+      BATCH: ${{ github.event.inputs.batch || '32' }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+          cache-dependency-path: 'scripts/ml/requirements.txt'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r scripts/ml/requirements.txt
+
+      - name: Train LSTM model
+        run: python scripts/ml/train_lstm.py "$GAME" --epochs "$EPOCHS" --batch "$BATCH"
+
+      - name: Convert to TF.js format
+        run: python scripts/ml/convert_to_tfjs.py "$GAME"
+
+      - name: Show output files
+        run: |
+          ls -lh public/models/"$GAME"/
+          echo "--- metadata.json (excerpt) ---"
+          head -c 1500 public/models/"$GAME"/metadata.json
+
+      - name: Commit model files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add public/models/"$GAME"
+          if git diff --staged --quiet; then
+            echo "No model changes to commit"
+          else
+            git commit -m "chore: train $GAME LSTM model ($(date -u +%Y-%m-%d))"
+            git push
+          fi

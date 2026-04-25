@@ -7,14 +7,19 @@ import StatsPanel from '@/components/stats/StatsPanel';
 import NumberPicker from '@/components/picker/NumberPicker';
 import ComboRecommend from '@/components/combo/ComboRecommend';
 import DataFreshness from '@/components/draw/DataFreshness';
+import { lazy, Suspense } from 'react';
 
-type Tab = 'history' | 'stats' | 'combo' | 'picker';
+// MLPanel 動態載入,避免首頁 bundle 變肥
+const MLPanel = lazy(() => import('@/components/ml/MLPanel'));
+
+type Tab = 'history' | 'stats' | 'combo' | 'picker' | 'ml';
 
 const TABS: { key: Tab; label: string }[] = [
   { key: 'history', label: '開獎查詢' },
   { key: 'stats', label: '統計分析' },
   { key: 'combo', label: '二/三/四合' },
   { key: 'picker', label: '選號工具' },
+  { key: 'ml', label: '🤖 ML 模型' },
 ];
 
 export default function Lottery539() {
@@ -72,6 +77,11 @@ export default function Lottery539() {
             {tab === 'stats' && <StatsPanel draws={draws} game={game539} />}
             {tab === 'combo' && <ComboRecommend draws={draws} game={game539} />}
             {tab === 'picker' && <NumberPicker draws={draws} game={game539} />}
+            {tab === 'ml' && (
+              <Suspense fallback={<div className="card text-center py-8 text-gray-500">載入 ML 模組中...</div>}>
+                <MLPanel draws={draws} game={game539} />
+              </Suspense>
+            )}
           </div>
         </>
       )}
