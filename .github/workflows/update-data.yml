@@ -1,7 +1,10 @@
 name: Update Lottery Data
 
-# 純手動觸發 (依使用者要求,不設排程)
 on:
+  schedule:
+    # 台灣時間 21:30 (UTC 13:30) 每天跑一次
+    # 539 開獎時間 20:30,留 1 小時讓官方 API 更新
+    - cron: '30 13 * * *'
   workflow_dispatch:
     inputs:
       game:
@@ -34,13 +37,20 @@ jobs:
       - name: Run update
         run: npm run update:all
 
+      # Heartbeat:即使資料沒變也寫入時間戳,確保每次都有 commit,
+      # 避開 GitHub Actions「公開 repo 60 天無活動就停用排程」的限制
+      - name: Write heartbeat
+        run: |
+          mkdir -p .github
+          date -u +"%Y-%m-%dT%H:%M:%SZ" > .github/last-run.txt
+
       - name: Commit data
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add public/data
+          git add public/data .github/last-run.txt
           if git diff --staged --quiet; then
-            echo "No changes to commit"
+            echo "No changes (shouldn't happen because of heartbeat)"
           else
             git commit -m "chore: update lottery data ($(date -u +%Y-%m-%d))"
             git push
