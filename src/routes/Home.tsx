@@ -30,7 +30,7 @@ export default function Home() {
         <ul className="text-sm text-gray-600 dark:text-gray-300 space-y-1 list-disc list-inside">
           <li>歷史開獎查詢與期間篩選,支援匯出 Excel</li>
           <li>號碼頻率、冷熱號、遺漏值統計分析</li>
-          <li>二合 / 三合 / 四合組合推薦 (多種演算法切換)</li>
+          <li>單號 / 二合 / 三合 / 四合 / 五合組合推薦 (多種演算法切換)</li>
           <li>選號工具與對獎試算 (資料儲存於本機,不上傳)</li>
           <li>資料每日從台灣彩券官網同步,中獎以官方為準</li>
         </ul>
