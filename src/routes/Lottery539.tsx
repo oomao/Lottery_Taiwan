@@ -17,7 +17,7 @@ type Tab = 'history' | 'stats' | 'combo' | 'picker' | 'ml';
 const TABS: { key: Tab; label: string }[] = [
   { key: 'history', label: '開獎查詢' },
   { key: 'stats', label: '統計分析' },
-  { key: 'combo', label: '二/三/四合' },
+  { key: 'combo', label: '單號 ~ 五合' },
   { key: 'picker', label: '選號工具' },
   { key: 'ml', label: '🤖 ML 模型' },
 ];

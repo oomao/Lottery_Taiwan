@@ -1,4 +1,4 @@
-// 二合 / 三合 / 四合 推薦演算法集
+// 單號 / 二合 / 三合 / 四合 / 五合 推薦演算法集
 //
 // 六種方法 + 一種綜合推薦 (composite),全部回傳統一介面 ComboScore[]。
 //
@@ -6,10 +6,13 @@
 // - 對於 frequency / weighted / gap,只列出歷史曾出現過的組合 (其他無從計算)。
 // - 對於 marginal / lift / markov / composite,會枚舉 *所有* C(N, k) 組合,
 //   因為它們即使從未出現也能算出機率,這正是進階方法的價值。
-// - 四合 (k=4) 全枚舉 = 82,251 組,經 useMemo 快取後瀏覽器可秒算。
+// - 四合 (k=4) 全枚舉 = 82,251 組;五合 (k=5, 539) = 575,757 組,首次計算需數秒。
+// - 單號 (k=1) 沒有 pair,lift 永遠為 1,在 composite 經標準化後自動歸零。
 
 import type { Draw, GameConfig } from '../types';
 import { combinations } from './combo';
+
+export type ComboK = 1 | 2 | 3 | 4 | 5;
 
 export type RecommendMethod =
   | 'composite'   // 綜合推薦 (預設,權重依 k 動態調整)
@@ -22,15 +25,19 @@ export type RecommendMethod =
 
 // 綜合推薦的權重表 - 依合數調整
 // 設計理念:
+//   k=1 (單號): 樣本最豐富,加權頻率主導;沒有 pair 所以 lift=0
 //   k=2 (二合): 已觀察組合 12+ 樣本,頻率類有意義,加權/lift/markov 同樣重要
 //   k=3 (三合): 觀察樣本 ~1 次/組合,需要更倚賴可推導的方法 (marginal/lift)
 //   k=4 (四合): 95% 組合是 0 次,frequency 系列徹底失效,marginal 成為主力
-export const COMPOSITE_WEIGHTS: Record<2 | 3 | 4, {
+//   k=5 (五合): 對 539 而言一個 5-合 = 完整一期,觀察率 < 0.2%,marginal 完全主導
+export const COMPOSITE_WEIGHTS: Record<ComboK, {
   weighted: number; marginal: number; lift: number; markov: number;
 }> = {
+  1: { weighted: 0.45, marginal: 0.30, lift: 0.00, markov: 0.25 },
   2: { weighted: 0.35, marginal: 0.20, lift: 0.25, markov: 0.20 },
   3: { weighted: 0.25, marginal: 0.30, lift: 0.25, markov: 0.20 },
   4: { weighted: 0.10, marginal: 0.55, lift: 0.20, markov: 0.15 },
+  5: { weighted: 0.05, marginal: 0.60, lift: 0.20, markov: 0.15 },
 };
 
 export interface ComboScore {
@@ -87,7 +94,7 @@ interface ObservedCombo {
 export function precomputeStats(
   draws: Draw[],
   game: GameConfig,
-  k: 2 | 3 | 4,
+  k: ComboK,
   options: ComputeOptions = {}
 ): PrecomputedStats {
   const { window, decayFactor = 0.97 } = options;
@@ -135,7 +142,7 @@ export function precomputeStats(
   });
 
   // P(n) 近似:n 出現次數 / (totalDraws * pickCount)
-  // 例如 n 出現 100 次,907 期,pick=5 → P(n) ≈ 100/(907*5) ≈ 2.20%
+  // 例如 n 出現 120 次,940 期,pick=5 → P(n) ≈ 120/(940*5) ≈ 2.55%
   const numberProb = new Map<number, number>();
   // P(n appears in a draw) = count / totalDraws
   const numberPerDrawProb = new Map<number, number>();
@@ -251,7 +258,7 @@ function scoreMarkov(combo: number[], pre: PrecomputedStats): number {
 export function recommend(
   draws: Draw[],
   game: GameConfig,
-  k: 2 | 3 | 4,
+  k: ComboK,
   method: RecommendMethod,
   options: ComputeOptions = {}
 ): ComboScore[] {
@@ -347,7 +354,7 @@ export function recommend(
 }
 
 // 隨機基準:某 k-合在 N 期裡的「期望出現次數」
-export function expectedRandomCount(N: number, k: 2 | 3 | 4, game: GameConfig): number {
+export function expectedRandomCount(N: number, k: ComboK, game: GameConfig): number {
   const [min, max] = game.numberRange;
   const total = max - min + 1;
   const pick = game.pickCount;

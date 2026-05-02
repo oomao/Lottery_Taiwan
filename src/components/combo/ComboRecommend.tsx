@@ -6,6 +6,7 @@ import {
   COMPOSITE_WEIGHTS,
   type RecommendMethod,
   type ComboScore,
+  type ComboK,
 } from '@/lib/stats/recommend';
 import Ball from '@/components/ui/Ball';
 
@@ -14,12 +15,12 @@ interface Props {
   game: GameConfig;
 }
 
-type ComboK = 2 | 3 | 4;
-
 const COMBO_LABELS: Record<ComboK, string> = {
+  1: '單號',
   2: '二合',
   3: '三合',
   4: '四合',
+  5: '五合',
 };
 
 interface MethodInfo {
@@ -43,16 +44,16 @@ const METHODS: MethodInfo[] = [
     key: 'frequency',
     label: '📊 純頻率',
     desc: '歷史出現次數最多的組合',
-    detail: '只算這個組合在統計範圍內出現過幾次。最簡單也最直觀,但對 4 合來說多數組合都是 0 次,沒鑑別力。',
-    bestFor: '二合 (有足夠樣本)',
-    caveat: '對 3/4 合資料太稀疏',
+    detail: '只算這個組合在統計範圍內出現過幾次。最簡單也最直觀,但對 4/5 合來說多數組合都是 0 次,沒鑑別力。',
+    bestFor: '單號 / 二合 (有足夠樣本)',
+    caveat: '對 3/4/5 合資料太稀疏',
   },
   {
     key: 'weighted',
     label: '⚡ 衰減加權',
     desc: '近期出現權重更高 (decay 0.97)',
     detail: '每出現一次給一個權重,但越久遠的權重越低 (weight = 0.97^期距)。比純頻率更關注近期表現。',
-    bestFor: '二合,想看「最近熱」的組合',
+    bestFor: '單號 / 二合,想看「最近熱」的組合',
   },
   {
     key: 'gap',
@@ -65,9 +66,9 @@ const METHODS: MethodInfo[] = [
   {
     key: 'marginal',
     label: '🎯 邊際機率',
-    desc: '依單號頻率推導,適合稀疏的四合',
+    desc: '依單號頻率推導,適合稀疏的四/五合',
     detail: 'P(組合) ≈ Π P(單號出現)。即使這個組合從未出現過,也能由「組成它的單號各自的頻率」估出機率。',
-    bestFor: '🎉 四合 (其他方法失效時的解法)',
+    bestFor: '🎉 四合 / 五合 (其他方法失效時的解法)',
   },
   {
     key: 'lift',
@@ -75,6 +76,7 @@ const METHODS: MethodInfo[] = [
     desc: '組合內號碼互相正關聯的程度',
     detail: 'Lift(A,B) = P(A,B) / (P(A)×P(B))。> 1 表示 A 和 B 比獨立預期更常一起出現,< 1 表示比較少。組合分數 = 所有號碼對 lift 的幾何平均。',
     bestFor: '二合、三合 (尋找「有伴」的號碼)',
+    caveat: '⚠️ 單號 (k=1) 沒有 pair,Lift 永遠 = 1 沒鑑別力',
   },
   {
     key: 'markov',
@@ -159,8 +161,8 @@ export default function ComboRecommend({ draws, game }: Props) {
         {/* 合數選擇 */}
         <div>
           <p className="text-sm font-medium mb-2">類型</p>
-          <div className="flex gap-2">
-            {([2, 3, 4] as ComboK[]).map((n) => (
+          <div className="flex flex-wrap gap-2">
+            {([1, 2, 3, 4, 5] as ComboK[]).map((n) => (
               <button
                 key={n}
                 onClick={() => setK(n)}
@@ -431,9 +433,11 @@ function MethodDetail({ info, k }: { info: MethodInfo; k: ComboK }) {
             <span>馬可夫 <strong>{(w.markov * 100).toFixed(0)}%</strong></span>
           </div>
           <p className="text-[10px] text-gray-500 mt-1 leading-snug">
+            {k === 1 && '單號樣本最豐富,加權頻率主導;沒有 pair → Lift 不參與'}
             {k === 2 && '二合資料豐富,各方法均衡 (頻率類給高權重)'}
             {k === 3 && '三合資料中等,稍偏向可推導的邊際/Lift'}
             {k === 4 && '四合資料極稀疏,邊際機率成為主力 (55%)'}
+            {k === 5 && '五合 (= 完整一期) 觀察率 < 0.2%,邊際機率完全主導 (60%)'}
           </p>
         </div>
       )}
