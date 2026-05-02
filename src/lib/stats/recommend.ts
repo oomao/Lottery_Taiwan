@@ -317,9 +317,14 @@ export function recommend(
   // 依方法填主分數
   if (method === 'composite') {
     // 標準化每個指標到 [0,1] 再加權
+    // 注意:不能用 Math.max(...vals) — k=5 時 vals.length = 575,757,會超過 JS 引擎的函式參數上限
     const norm = (vals: number[]) => {
-      const max = Math.max(...vals);
-      const min = Math.min(...vals);
+      let max = -Infinity;
+      let min = Infinity;
+      for (const v of vals) {
+        if (v > max) max = v;
+        if (v < min) min = v;
+      }
       const range = max - min;
       return range > 0 ? vals.map((v) => (v - min) / range) : vals.map(() => 0);
     };

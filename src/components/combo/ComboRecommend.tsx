@@ -296,7 +296,7 @@ export default function ComboRecommend({ draws, game }: Props) {
           </span>
           <span>
             🎲 隨機基準:該 {COMBO_LABELS[k]} 組合期望出現{' '}
-            <strong>{baseline.toFixed(2)}</strong> 次
+            <strong>{formatBaseline(baseline)}</strong> 次
           </span>
         </div>
       </div>
@@ -461,6 +461,13 @@ function MethodDetail({ info, k }: { info: MethodInfo; k: ComboK }) {
       </p>
     </div>
   );
+}
+
+function formatBaseline(n: number): string {
+  if (n >= 1) return n.toFixed(2);
+  if (n >= 0.01) return n.toFixed(3);
+  if (n > 0) return n.toFixed(4);
+  return '0';
 }
 
 function formatScore(score: number, method: RecommendMethod): string {
