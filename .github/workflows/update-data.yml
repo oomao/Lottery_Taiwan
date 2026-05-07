@@ -23,9 +23,14 @@ on:
           - lotto649
           - superlotto
 
+concurrency:
+  group: update-data
+  cancel-in-progress: false
+
 jobs:
   update:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
+    timeout-minutes: 20
     permissions:
       contents: write
     env:
@@ -41,8 +46,16 @@ jobs:
       - name: Install deps
         run: npm ci
 
-      - name: Run update
-        run: npm run update:all
+      - name: Run update (with retry)
+        run: |
+          for i in 1 2 3; do
+            if npm run update:all; then
+              exit 0
+            fi
+            echo "Attempt $i failed, retrying in 30s..."
+            sleep 30
+          done
+          exit 1
 
       # Heartbeat:即使資料沒變也寫入時間戳,確保每次都有 commit,
       # 避開 GitHub Actions「公開 repo 60 天無活動就停用排程」的限制
