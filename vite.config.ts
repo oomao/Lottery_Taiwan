@@ -30,16 +30,14 @@ export default defineConfig(({ command }) => {
           start_url: BASE,
           scope: BASE,
           icons: [
+            // 之前舊 manifest reference icon-192.png / icon-512.png 但檔案
+            // 實際不存在 → Chrome 抓不到 icon → 不認證為可安裝 PWA,
+            // 「新增至主螢幕」降級成 bookmark-only(通用 G icon)。
+            // 改用 favicon.svg + sizes:'any' 一條搞定所有尺寸。
             {
-              src: 'icon-192.png',
-              sizes: '192x192',
-              type: 'image/png',
-              purpose: 'any maskable',
-            },
-            {
-              src: 'icon-512.png',
-              sizes: '512x512',
-              type: 'image/png',
+              src: 'favicon.svg',
+              sizes: 'any',
+              type: 'image/svg+xml',
               purpose: 'any maskable',
             },
           ],
