@@ -84,9 +84,7 @@
 │   │   ├── metadata.json         # LSTM 評估結果
 │   │   ├── xgboost.json          # XGBoost 樹結構
 │   │   └── xgboost-metadata.json # XGBoost 評估結果
-│   ├── manifest.webmanifest      # PWA
-│   ├── sw.js                     # Service Worker
-│   └── favicon.svg
+│   └── favicon.svg               # PWA manifest + Service Worker 由 vite-plugin-pwa 自動產生
 ├── scripts/
 │   ├── fetchers/                 # 各彩種 fetcher (TS,呼叫官方 API)
 │   ├── stats/compute-all.ts      # 預算二/三/四合統計
@@ -119,8 +117,7 @@
 │   │   ├── data-loader.ts        # fetch JSON + bustCache
 │   │   ├── useDraws.ts           # 自動重抓 + 5 分鐘 cooldown hook
 │   │   ├── export-excel.ts
-│   │   ├── theme.ts
-│   │   └── register-sw.ts
+│   │   └── theme.ts
 │   ├── routes/                   # Home / Lottery539 / Lotto649 / SuperLotto / NotFound
 │   └── styles/globals.css
 └── docs/

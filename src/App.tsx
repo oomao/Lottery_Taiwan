@@ -9,8 +9,8 @@ import SuperLotto from './routes/SuperLotto';
 import NotFound from './routes/NotFound';
 
 export default function App() {
-  // PWA 三層自動更新:
-  // 1) registerType: 'autoUpdate' (vite.config) — 載入時自動檢查
+  // PWA 三層自動更新檢查:
+  // 1) registerType: 'prompt' (vite.config) — 偵測到新版觸發 onNeedRefresh → banner
   // 2) hourly poll — 久開分頁也能拿到新版
   // 3) visibilitychange — 切回分頁瞬間檢查
   const swRegistrationRef = useRef<ServiceWorkerRegistration | null>(null);
@@ -22,21 +22,25 @@ export default function App() {
     onRegisteredSW(_swUrl, registration) {
       if (!registration) return;
       swRegistrationRef.current = registration;
-      // hourly poll
-      setInterval(() => {
-        registration.update().catch(() => {});
-      }, 60 * 60 * 1000);
     },
   });
 
   useEffect(() => {
+    const intervalId = setInterval(() => {
+      swRegistrationRef.current?.update().catch(() => {});
+    }, 60 * 60 * 1000);
+
     const onVisibilityChange = () => {
-      if (!document.hidden && swRegistrationRef.current) {
-        swRegistrationRef.current.update().catch(() => {});
+      if (!document.hidden) {
+        swRegistrationRef.current?.update().catch(() => {});
       }
     };
     document.addEventListener('visibilitychange', onVisibilityChange);
-    return () => document.removeEventListener('visibilitychange', onVisibilityChange);
+
+    return () => {
+      clearInterval(intervalId);
+      document.removeEventListener('visibilitychange', onVisibilityChange);
+    };
   }, []);
 
   const applyUpdate = () => {
